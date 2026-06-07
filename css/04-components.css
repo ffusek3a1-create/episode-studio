@@ -888,12 +888,18 @@ footer {
    THEME TOGGLE
    ────────────────────────────────────────── */
 
+.nav-actions {
+  display:     flex;
+  align-items: center;
+  gap:         0.75rem;
+}
+
 .theme-toggle {
   display:          flex;
   align-items:      center;
   justify-content:  center;
-  width:            34px;
-  height:           34px;
+  width:            32px;
+  height:           32px;
   border:           1px solid var(--color-border);
   border-radius:    var(--radius-sm);
   background:       transparent;
@@ -908,8 +914,10 @@ footer {
   border-color:     var(--color-border2);
 }
 
-/* Ikony: ciemny motyw = pokaż słońce; jasny = pokaż księżyc */
+/* Ciemny motyw aktywny → pokaż słońce (przełącz na jasny) */
 html.dark  .icon-moon { display: none; }
 html.dark  .icon-sun  { display: block; }
+
+/* Jasny motyw aktywny → pokaż księżyc (przełącz na ciemny) */
 html.light .icon-sun  { display: none; }
 html.light .icon-moon { display: block; }

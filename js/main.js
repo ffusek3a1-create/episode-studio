@@ -185,10 +185,9 @@ function initThemeToggle() {
   const html = document.documentElement;
   if (!btn) return;
 
-  // Odczyt preferencji: localStorage → system → domyślnie dark
-  const saved = localStorage.getItem('es-theme');
-  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-  const initial = saved ?? (prefersDark ? 'dark' : 'light');
+  // Odczyt preferencji: localStorage → domyślnie zawsze dark
+  const saved  = localStorage.getItem('es-theme');
+  const initial = saved ?? 'dark';
   applyTheme(initial);
 
   btn.addEventListener('click', () => {
