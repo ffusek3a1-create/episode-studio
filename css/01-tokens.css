@@ -1,0 +1,87 @@
+/* ============================================================
+   01-tokens.css — Design Tokens (Episode Studio)
+   ============================================================ */
+
+/* ── 1. IMPORTOWANIE PLIKÓW Z GENERATORA ── */
+@import "themes/light.css";
+@import "themes/dark.css";
+@import "themes/light-mc.css";
+@import "themes/dark-mc.css";
+@import "themes/light-hc.css";
+@import "themes/dark-hc.css";
+
+/* ── 2. TWOJE NIEPROSZONE STATUS QUO (STAŁE STRONY) ── */
+:root {
+  /* Typografia */
+  --font-serif:  'Cormorant Garamond', Georgia, serif;
+  --font-sans:   'Jost', sans-serif;
+
+  /* Skale nagłówków */
+  --text-hero:   clamp(3.5rem, 7.5vw, 7rem);
+  --text-h2:     clamp(2rem, 4vw, 3.25rem);
+  --text-h3:     1.35rem;
+  --text-quote:  clamp(1.6rem, 3vw, 2.5rem);
+  --text-body:   15px;
+  --text-small:  13px;
+  --text-label:  10px;
+  --text-micro:  9.5px;
+
+  /* Spacing */
+  --space-xs:   0.5rem;
+  --space-sm:   1rem;
+  --space-md:   2rem;
+  --space-lg:   3rem;
+  --space-xl:   5rem;
+  --space-2xl:  7rem;
+  --space-3xl:  8rem;
+
+  --section-pad:   7rem 0;
+  --container-max: 1200px;
+  --container-pad: 0 3rem;
+
+  /* Animacje */
+  --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --duration-fast:   0.2s;
+  --duration-base:   0.35s;
+  --duration-slow:   0.8s;
+  --duration-reveal: 0.9s;
+
+  /* Border radius */
+  --radius-sm:  2px;
+  --radius-md:  4px;
+  --radius-lg:  12px;
+}
+
+/* ── 3. BEZPIECZNE MAPOWANIE DLA SYSTEMU MATERIAL (NA SAMYM DOLE) ── */
+/* Generator w pliku dark.css tworzy zmienne wewnątrz klasy .dark lub na :root 
+   w specyficzny sposób. Nadpisujemy to na poziomie body/html, aby mieć pewność,
+   że przeglądarka najpierw załadowała zmienne z importów, a dopiero teraz ich używa.
+*/
+html, body, :root {
+  --color-bg:        var(--md-sys-color-background);
+  --color-surface:   var(--md-sys-color-surface-container-low);
+  --color-surface2:  var(--md-sys-color-surface-container);
+  
+  --color-primary:   var(--md-sys-color-primary);
+  --color-primary-d: var(--md-sys-color-primary-container);
+  --color-secondary: var(--md-sys-color-secondary);
+  --color-tertiary:  var(--md-sys-color-tertiary);
+
+  --color-text:      var(--md-sys-color-on-background);
+  --color-muted:     var(--md-sys-color-on-surface-variant);
+  --color-faint:     var(--md-sys-color-outline);
+
+  --color-border:    var(--md-sys-color-outline-variant);
+  --color-border2:   var(--md-sys-color-outline);
+
+  /* Wymuszenie ciemnego schematu w przeglądarce */
+  color-scheme: dark;
+}
+
+/* ── 4. STYLOWANIE BAZOWE ── */
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}

@@ -1,0 +1,143 @@
+/* ============================================================
+   02-base.css — Reset, typografia bazowa, elementy globalne
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:  var(--color-bg);
+  color:       var(--color-text);
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size:   16px;
+  line-height: 1.7;
+  overflow-x:  hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── NOISE TEXTURE ──
+   Subtelna nakładka szumu na całą stronę.
+   Zmień opacity aby wzmocnić / osłabić efekt.
+   Usuń body::before aby wyłączyć całkowicie. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+
+/* ── KONTENERY ── */
+section {
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin:    0 auto;
+  padding:   var(--container-pad);
+}
+
+/* ── TYPOGRAFIA WSPÓLNA ── */
+.section-label {
+  font-family:    var(--font-sans);
+  font-size:      var(--text-label);
+  font-weight:    500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color:          var(--color-tertiary);
+  margin-bottom:  var(--space-sm);
+}
+
+.section-h2 {
+  font-family: var(--font-serif);
+  font-size:   var(--text-h2);
+  font-weight: 300;
+  line-height: 1.1;
+  color:       var(--color-primary);
+  margin-bottom: 1.25rem;
+}
+
+.section-h2 em {
+  font-style:  italic;
+  font-weight: 300;
+  color:       var(--color-text);
+}
+
+/* mixed-weight: <strong> wewnątrz h2 dla akcentu wagą */
+.section-h2 strong {
+  font-weight: 500;
+  color:       var(--color-primary);
+}
+
+.section-lead {
+  font-family: var(--font-sans);
+  font-size:   var(--text-body);
+  font-weight: 300;
+  color:       var(--color-faint);
+  max-width:   50ch;
+  line-height: 1.75;
+}
+
+/* ── PRZYCISKI ── */
+.btn-primary {
+  display:         inline-block;
+  font-family:     var(--font-sans);
+  font-size:       11px;
+  font-weight:     500;
+  letter-spacing:  0.16em;
+  text-transform:  uppercase;
+  color:           var(--color-bg);
+  background:      var(--color-primary);
+  padding:         0.85rem 2rem;
+  border-radius:   var(--radius-sm);
+  text-decoration: none;
+  border:          none;
+  cursor:          pointer;
+  transition:      background var(--duration-fast), transform var(--duration-fast);
+}
+
+.btn-primary:hover {
+  background:  var(--color-primary-d);
+  transform:   translateY(-1px);
+}
+
+.btn-ghost {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             var(--space-xs);
+  font-family:     var(--font-sans);
+  font-size:       11px;
+  font-weight:     400;
+  letter-spacing:  0.16em;
+  text-transform:  uppercase;
+  color:           var(--color-muted);
+  text-decoration: none;
+  transition:      color var(--duration-fast);
+}
+
+.btn-ghost:hover { color: var(--color-primary); }
+.btn-ghost::after { content: '↓'; font-size: 14px; }
+
+/* ── PLACEHOLDERY ── */
+::placeholder {
+  color:   var(--color-muted);
+  opacity: 0.5;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar         { width: 4px; }
+::-webkit-scrollbar-track   { background: var(--color-bg); }
+::-webkit-scrollbar-thumb   { background: var(--color-border2); border-radius: 2px; }

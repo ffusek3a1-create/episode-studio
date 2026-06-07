@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Episode Studio — Boutique Event Agency</title>
+
+  <!-- Fonty Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <!-- Style — kolejność ma znaczenie -->
+  <link rel="stylesheet" href="css/01-tokens.css">     <!-- zmienne, kolory, fonty -->
+  <link rel="stylesheet" href="css/02-base.css">       <!-- reset, typografia, przyciski -->
+  <link rel="stylesheet" href="css/03-animations.css"> <!-- keyframes, scroll reveal -->
+  <link rel="stylesheet" href="css/04-components.css"> <!-- wszystkie komponenty -->
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     NAV
+═══════════════════════════════════════ -->
+<nav>
+  <a class="nav-logo" href="#">Episode Studio</a>
+  <ul class="nav-links">
+    <li><a href="#services">Oferta</a></li>
+    <li><a href="#process">Proces</a></li>
+    <li><a href="#about">O nas</a></li>
+    <li><a href="#contact">Kontakt</a></li>
+  </ul>
+  <a class="nav-cta" href="#" onclick="openModal(); return false;">Umów rozmowę</a>
+</nav>
+
+
+<!-- ═══════════════════════════════════════
+     HERO
+═══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-line"></div>
+  <p class="hero-eyebrow">Boutique Event Agency · Wroclaw</p>
+  <h1 class="hero-h1">Każde zdarzenie ma <em>swój moment.</em></h1>
+  <p class="hero-sub">Tworzymy doświadczenia, które zostają w pamięci — zarówno dla firm szukających wyjątkowego team-buildingu, jak i par marzących o ceremonii skrojonej na miarę.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="#" onclick="openModal(); return false;">Umów bezpłatną rozmowę</a>
+    <a class="btn-ghost" href="#services">Sprawdź ofertę</a>
+  </div>
+  <span class="hero-vertical-label">Episode Studio · 2026</span>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     INTRO
+═══════════════════════════════════════ -->
+<section class="intro" id="intro">
+  <div class="container">
+    <div class="intro-inner">
+
+      <div class="reveal">
+        <p class="section-label">Dlaczego Episode</p>
+        <h2 class="section-h2">Nie organizujemy imprez.<br><em>Projektujemy epizody.</em></h2>
+        <p class="section-lead">Każde zlecenie traktujemy jak unikalną historię — z własnym rytmem, emocją i puentą. Nie ma szablonów. Są tylko ludzie i ich momenty.</p>
+      </div>
+
+      <div class="intro-stat-grid reveal">
+        <div class="intro-stat">
+          <div class="stat-num">B2B</div>
+          <div class="stat-label">Team-building, off-sity,<br>brand activations</div>
+        </div>
+        <div class="intro-stat">
+          <div class="stat-num">B2C</div>
+          <div class="stat-label">Śluby, urodziny,<br>eventy osobiste</div>
+        </div>
+        <div class="intro-stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Bespoke — każdy event<br>tworzony od zera</div>
+        </div>
+        <div class="intro-stat">
+          <div class="stat-num">1×</div>
+          <div class="stat-label">Jeden opiekun od briefu<br>do ostatniego gościa</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════ -->
+<section class="services" id="services">
+  <div class="container">
+
+    <div class="services-header reveal">
+      <div>
+        <p class="section-label">Oferta</p>
+        <h2 class="section-h2">Co robimy<br><em>naprawdę dobrze</em></h2>
+      </div>
+      <p class="section-lead">Dwie ścieżki, jeden standard. Niezależnie czy przychodzisz z ramienia firmy czy jako para — dostajecie ten sam poziom uwagi i zaangażowania.</p>
+    </div>
+
+    <div class="services-tabs reveal">
+      <button class="tab-btn active" onclick="switchTab('b2b', this)">B2B — dla firm</button>
+      <button class="tab-btn" onclick="switchTab('b2c', this)">B2C — dla par i osób</button>
+    </div>
+
+    <!-- B2B -->
+    <div class="services-panel active" id="panel-b2b">
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-num">01</span>
+          <h3 class="service-title">Team-building<br><em>z programem</em></h3>
+          <p class="service-desc">Survival, kulinarnie, city quest, sport — nie impreza, lecz doświadczenie, które realnie łączy zespół. Szczególnie dla teamów zdalnych i hybrydowych.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">02</span>
+          <h3 class="service-title">Off-sity<br><em>dla zarządów</em></h3>
+          <p class="service-desc">Strategiczne wyjazdy łączące warsztaty z komfortowym pobytem. Dyskrecja, logistyka i tempo dopasowane do liderów.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">03</span>
+          <h3 class="service-title">Brand<br><em>activations</em></h3>
+          <p class="service-desc">Launche produktów, eventy w niestandardowych przestrzeniach, experience marketing — dla marek, które chcą być zapamiętane.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">04</span>
+          <h3 class="service-title">Employer<br><em>branding</em></h3>
+          <p class="service-desc">Family days, warsztaty pracownicze, eventy pokazujące kulturę organizacji — budujemy wizerunek pracodawcy od środka.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">05</span>
+          <h3 class="service-title">Wyjazdy dla<br><em>top klientów</em></h3>
+          <p class="service-desc">Zagraniczne tripy dla managementu lub kluczowych klientów. Doświadczenie, dyskrecja i perfekcyjna logistyka na każdym etapie.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">06</span>
+          <h3 class="service-title">Eventy<br><em>CSR i ESG</em></h3>
+          <p class="service-desc">Team-building połączony z wolontariatem, inicjatywami środowiskowymi i odpowiedzialnością społeczną — z treścią i wartością.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- B2C -->
+    <div class="services-panel" id="panel-b2c">
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-num">01</span>
+          <h3 class="service-title">Micro-wedding<br><em>i ceremonie</em></h3>
+          <p class="service-desc">Mniej gości, więcej uwagi na każdy detal. Plener lub wyjątkowa przestrzeń — zawsze z naciskiem na estetykę i atmosferę.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">02</span>
+          <h3 class="service-title">Zaręczyny<br><em>i propozycje</em></h3>
+          <p class="service-desc">Gotowe scenariusze lub projekty tworzone od zera — zarówno kameralne jak i spektakularne. Moment, który zapamięta się na całe życie.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">03</span>
+          <h3 class="service-title">Urodziny<br><em>dla dorosłych</em></h3>
+          <p class="service-desc">Premium, retro, sportowe, klubowe — temat dopasowany do osobowości, nie do szablonu.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">04</span>
+          <h3 class="service-title">Eventy<br><em>outdoorowe</em></h3>
+          <p class="service-desc">Prywatne pikniki, kolacje w ogrodzie, garden parties, kameralne ceremonie pod chmurką. Natura jako scenografia.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">05</span>
+          <h3 class="service-title">Baby shower<br><em>i rocznice</em></h3>
+          <p class="service-desc">Eventy rodzinne z wysokim poziomem personalizacji — baby shower, gender reveal, rocznice i inne momenty, które zasługują na oprawę.</p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">06</span>
+          <h3 class="service-title">Once-in-a-lifetime<br><em>experiences</em></h3>
+          <p class="service-desc">Eventy zaprojektowane wokół jednej emocji lub osobistej historii klienta. Dla tych, którzy chcą przekazać coś niepowtarzalnego.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     PROCESS
+═══════════════════════════════════════ -->
+<section class="process" id="process">
+  <div class="container">
+
+    <div class="reveal">
+      <p class="section-label">Jak pracujemy</p>
+      <h2 class="section-h2">Cztery kroki<br><em>do gotowego eventu</em></h2>
+    </div>
+
+    <div class="process-table reveal">
+
+      <div class="process-row">
+        <span class="pt-num">01</span>
+        <span class="pt-phase">Odkrycie</span>
+        <div class="pt-title">Rozmowa<br><em>bez skryptu</em></div>
+        <div class="pt-meta">
+          <div class="pt-meta-item">
+            <span class="pt-meta-key">Czas trwania</span>
+            <span class="pt-meta-val">30 minut · online lub na żywo</span>
+          </div>
+          <div class="pt-meta-item">
+            <span class="pt-meta-key">Co dostajesz</span>
+            <span class="pt-meta-val">Pierwsze pytania, pierwsze kierunki, zero zobowiązań</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-row">
+        <span class="pt-num">02</span>
+        <span class="pt-phase">Koncepcja</span>
+        <div class="pt-title"><em>Propozycja</em><br>na miarę</div>
+        <div class="pt-meta">
+          <div class="pt-meta-item">
+            <span class="pt-meta-key">Czas trwania</span>
+            <span class="pt-meta-val">5–7 dni roboczych</span>
+          </div>
+          <div class="pt-meta-item">
+            <span class="pt-meta-key">Co dostajesz</span>
+            <span class="pt-meta-val">Autorski motyw, harmonogram, wstępny budżet z podziałem na dostawców</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-row">
+        <span class="pt-num">03</span>
+        <span class="pt-phase">Realizacja</span>
+        <div class="pt-title">Logistyka<br><em>niewidoczna</em></div>
+        <div class="pt-meta">
+          <div class="pt-meta-item">
+            <span class="pt-meta-key">Czas trwania</span>
+            <span class="pt-meta-val">Od podpisania umowy do dnia eventu</span>
+          </div>
+          <div class="pt-meta-item">
+            <span class="pt-meta-key">Co dostajesz</span>
+            <span class="pt-meta-val">Jeden opiekun, pełna koordynacja dostawców, bieżące raportowanie</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="process-row">
+        <span class="pt-num">04</span>
+        <span class="pt-phase">Dzień eventu</span>
+        <div class="pt-title">Twój <em>moment</em><br>w centrum</div>
+        <div class="pt-meta">
+          <div class="pt-meta-item">
+            <span class="pt-meta-key">Obecność</span>
+            <span class="pt-meta-val">Od pierwszej minuty setupu do ostatniego gościa</span>
+          </div>
+          <div class="pt-meta-item">
+            <span class="pt-meta-key">Co dostajesz</span>
+            <span class="pt-meta-val">Pełny spokój — reagujemy i dbamy w tle</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════ -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-inner">
+
+      <div class="reveal">
+        <p class="section-label">Filozofia</p>
+        <blockquote class="about-quote">"Każdy event to nie usługa.<br>To <em>epizod</em> z czyjejś historii."</blockquote>
+        <p class="about-body">Episode Studio powstało z przekonania, że najlepsze eventy nie są wynikiem wielkiego budżetu — lecz precyzyjnie postawionego pytania: co ta chwila ma znaczyć dla ludzi, którzy w niej uczestniczą?</p>
+        <p class="about-body">Pracujemy jako boutique agency — małe, wybierające zlecenia i w pełni zaangażowane w każde z nich. Nie skalujemy się kosztem jakości. Każdy klient dostaje pełną uwagę, nie koordynatora-asystenta z gotowym schematem.</p>
+      </div>
+
+      <div class="reveal">
+        <p class="section-label">Nasze zasady</p>
+        <ul class="values-list">
+          <li>Jedno zlecenie, jeden opiekun — od briefu do końca</li>
+          <li>Żadnych szablonów — każda koncepcja od zera</li>
+          <li>Budżet traktujemy jak zaufanie</li>
+          <li>Dyskrecja jako standard, nie opcja</li>
+          <li>Logistyka niewidoczna — emocje na pierwszym planie</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     IMAGE SECTION (parallax)
+     Zamień URL w css/04-components.css
+     (sekcja .image-section-bg) na własne zdjęcie.
+═══════════════════════════════════════ -->
+<section class="image-section" id="image-parallax">
+  <div class="image-section-bg" id="parallax-bg"></div>
+  <div class="image-section-overlay"></div>
+  <div class="image-section-content">
+    <p class="image-section-label">Boutique · Wroclaw</p>
+    <h2 class="image-section-quote">Przestrzeń,<br>w której <em>historia<br>nabiera kształtu.</em></h2>
+    <p class="image-section-body">Nie wierzymy w generyczne rozwiązania. Każdy event, który realizujemy, jest odpowiedzią na konkretnych ludzi, konkretne emocje i konkretny moment w czasie.</p>
+  </div>
+  <span class="image-credit">Foto: <a href="https://unsplash.com" target="_blank">Unsplash</a></span>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════ -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+
+      <div class="contact-left reveal">
+        <p class="section-label">Kontakt</p>
+        <h2 class="section-h2">Napisz do nas.<br><em>Odezwiemy się szybko.</em></h2>
+        <p class="section-lead" style="margin-bottom:0;">Wypełnij formularz lub umów rozmowę — bez presji, bez zobowiązań. Opowiedz nam o swoim pomyśle, a my odezwiemy się w ciągu 24 godzin.</p>
+
+        <!-- Formularz — podłącz backend w js/main.js (sekcja initContactForm) -->
+        <form class="contact-form" id="contact-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label class="field-label" for="cf-name">Imię i nazwisko</label>
+              <input type="text" id="cf-name" name="name" placeholder="Anna Kowalska" required>
+            </div>
+            <div class="form-field">
+              <label class="field-label" for="cf-email">E-mail</label>
+              <input type="email" id="cf-email" name="email" placeholder="anna@firma.pl" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label class="field-label" for="cf-type">Rodzaj eventu</label>
+              <select id="cf-type" name="type">
+                <option value="" disabled selected>Wybierz…</option>
+                <option>Team-building / off-site</option>
+                <option>Brand activation / launch</option>
+                <option>Employer branding</option>
+                <option>Ślub / micro-wedding</option>
+                <option>Urodziny / event osobisty</option>
+                <option>Inne</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="field-label" for="cf-budget">Orientacyjny budżet</label>
+              <select id="cf-budget" name="budget">
+                <option value="" disabled selected>Wybierz…</option>
+                <option>do 10 000 zł</option>
+                <option>10 000 – 30 000 zł</option>
+                <option>30 000 – 80 000 zł</option>
+                <option>powyżej 80 000 zł</option>
+                <option>Wolę omówić na rozmowie</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field full" style="background:var(--color-surface);">
+            <label class="field-label" for="cf-message">Opowiedz nam o swoim evencie</label>
+            <textarea id="cf-message" name="message" placeholder="Kiedy planujecie event, ile osób, co jest dla Was najważniejsze…"></textarea>
+          </div>
+          <div class="form-submit-row">
+            <p class="form-note">Odpowiadamy w ciągu 24h.<br>Pierwsze spotkanie zawsze bezpłatne.</p>
+            <button type="submit" class="form-submit-btn">Wyślij zapytanie →</button>
+          </div>
+          <div class="form-success" id="form-success">
+            Dziękujemy — odezwiemy się wkrótce.
+          </div>
+        </form>
+      </div>
+
+      <div class="contact-right reveal">
+        <div class="contact-detail-block">
+          <p class="contact-detail-label">E-mail</p>
+          <!-- Zamień na właściwy adres -->
+          <p class="contact-detail-value"><a href="mailto:hello@episodestudio.pl">hello@episodestudio.pl</a></p>
+        </div>
+        <div class="contact-detail-block">
+          <p class="contact-detail-label">Lokalizacja</p>
+          <p class="contact-detail-value">Wroclaw<br><span style="font-size:0.9rem; color:var(--color-muted);">Realizacje w całej Polsce i za granicą</span></p>
+        </div>
+        <div class="contact-detail-block">
+          <p class="contact-detail-label">Social</p>
+          <p class="contact-detail-value">
+            <a href="#">LinkedIn</a> · <a href="#">Instagram</a>
+          </p>
+        </div>
+        <div class="contact-separator"></div>
+        <div class="contact-calendly-block">
+          <p class="contact-calendly-label">Preferujesz rozmowę?</p>
+          <h3 class="contact-calendly-h">Zarezerwuj <em>30 minut</em></h3>
+          <p class="contact-calendly-desc">Wybierz termin w kalendarzu — bez formularzy, bez oczekiwania.</p>
+          <!-- Zamień href na właściwy link Calendly -->
+          <a class="btn-primary" href="#" onclick="openModal(); return false;" style="font-size:11px; padding:0.75rem 1.5rem;">Umów przez Calendly</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════ -->
+<footer>
+  <span class="footer-logo">Episode Studio</span>
+  <ul class="footer-links">
+    <li><a href="#">Polityka prywatności</a></li>
+    <li><a href="#">LinkedIn</a></li>
+    <li><a href="mailto:hello@episodestudio.pl">hello@episodestudio.pl</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 Episode Studio</span>
+</footer>
+
+
+<!-- ═══════════════════════════════════════
+     MODAL (Calendly)
+     Zamień href w .modal-calendly-btn na
+     właściwy link do Twojego kalendarza.
+═══════════════════════════════════════ -->
+<div class="modal-overlay" id="modal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <p class="modal-label">Bezpłatna konsultacja</p>
+    <h2 class="modal-h">Umów<br><em>30-minutową rozmowę</em></h2>
+    <p class="modal-desc">Wybierz termin, który Ci odpowiada. Porozmawiamy o Twoim evencie — bez zobowiązań i bez presji sprzedażowej.</p>
+    <!-- Zamień href na właściwy link Calendly -->
+    <a class="modal-calendly-btn" href="https://calendly.com" target="_blank">Otwórz kalendarz → Calendly</a>
+    <p class="modal-alt">Wolisz e-mail? Napisz na <a href="mailto:hello@episodestudio.pl">hello@episodestudio.pl</a></p>
+  </div>
+</div>
+
+
+<!-- Skrypt — na końcu body dla szybszego ładowania -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
