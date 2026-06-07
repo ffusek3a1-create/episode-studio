@@ -177,10 +177,39 @@ function showFormSuccess() {
 
 
 /* ──────────────────────────────────────────
+   7. THEME TOGGLE — jasny / ciemny
+   ────────────────────────────────────────── */
+
+function initThemeToggle() {
+  const btn  = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  if (!btn) return;
+
+  // Odczyt preferencji: localStorage → system → domyślnie dark
+  const saved = localStorage.getItem('es-theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const initial = saved ?? (prefersDark ? 'dark' : 'light');
+  applyTheme(initial);
+
+  btn.addEventListener('click', () => {
+    const next = html.classList.contains('dark') ? 'light' : 'dark';
+    applyTheme(next);
+    localStorage.setItem('es-theme', next);
+  });
+
+  function applyTheme(theme) {
+    html.classList.remove('dark', 'light');
+    html.classList.add(theme);
+  }
+}
+
+
+/* ──────────────────────────────────────────
    INIT — uruchomienie wszystkich modułów
    ────────────────────────────────────────── */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeToggle();
   initNav();
   initModal();
   initScrollReveal();

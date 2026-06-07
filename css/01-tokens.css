@@ -76,9 +76,10 @@ html, body, :root {
   --color-border:    var(--md-sys-color-outline-variant);
   --color-border2:   var(--md-sys-color-outline);
 
-  /* Wymuszenie ciemnego schematu w przeglądarce */
-  color-scheme: dark;
 }
+
+html.dark  { color-scheme: dark; }
+html.light { color-scheme: light; }
 
 /* ── 4. STYLOWANIE BAZOWE ── */
 body {
