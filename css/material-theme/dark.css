@@ -48,4 +48,19 @@
   --md-sys-color-surface-container: rgb(31 31 37);
   --md-sys-color-surface-container-high: rgb(41 41 47);
   --md-sys-color-surface-container-highest: rgb(52 52 58);
+
+  /* Aliasy używane przez komponenty */
+  --color-bg:        var(--md-sys-color-background);
+  --color-surface:   var(--md-sys-color-surface-container-low);
+  --color-surface2:  var(--md-sys-color-surface-container);
+  --color-primary:   var(--md-sys-color-primary);
+  --color-primary-d: var(--md-sys-color-primary-container);
+  --color-on-primary: var(--md-sys-color-on-primary);
+  --color-secondary: var(--md-sys-color-secondary);
+  --color-tertiary:  var(--md-sys-color-tertiary);
+  --color-text:      var(--md-sys-color-on-background);
+  --color-muted:     var(--md-sys-color-on-surface-variant);
+  --color-faint:     var(--md-sys-color-outline);
+  --color-border:    var(--md-sys-color-outline-variant);
+  --color-border2:   var(--md-sys-color-outline);
 }

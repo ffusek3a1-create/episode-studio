@@ -54,29 +54,7 @@
   --radius-lg:  12px;
 }
 
-/* ── 3. BEZPIECZNE MAPOWANIE DLA SYSTEMU MATERIAL (NA SAMYM DOLE) ── */
-/* Generator w pliku dark.css tworzy zmienne wewnątrz klasy .dark lub na :root 
-   w specyficzny sposób. Nadpisujemy to na poziomie body/html, aby mieć pewność,
-   że przeglądarka najpierw załadowała zmienne z importów, a dopiero teraz ich używa.
-*/
-html, body, :root {
-  --color-bg:        var(--md-sys-color-background);
-  --color-surface:   var(--md-sys-color-surface-container-low);
-  --color-surface2:  var(--md-sys-color-surface-container);
-  
-  --color-primary:   var(--md-sys-color-primary);
-  --color-primary-d: var(--md-sys-color-primary-container);
-  --color-secondary: var(--md-sys-color-secondary);
-  --color-tertiary:  var(--md-sys-color-tertiary);
-
-  --color-text:      var(--md-sys-color-on-background);
-  --color-muted:     var(--md-sys-color-on-surface-variant);
-  --color-faint:     var(--md-sys-color-outline);
-
-  --color-border:    var(--md-sys-color-outline-variant);
-  --color-border2:   var(--md-sys-color-outline);
-
-}
+/* ── 3. MAPOWANIE — aliasy zdefiniowane bezpośrednio w .dark / .light (material-theme/*.css) ── */
 
 html.dark  { color-scheme: dark; }
 html.light { color-scheme: light; }
