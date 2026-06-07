@@ -3,12 +3,12 @@
    ============================================================ */
 
 /* ── 1. IMPORTOWANIE PLIKÓW Z GENERATORA ── */
-@import "themes/light.css";
-@import "themes/dark.css";
-@import "themes/light-mc.css";
-@import "themes/dark-mc.css";
-@import "themes/light-hc.css";
-@import "themes/dark-hc.css";
+@import "material-theme/light.css";
+@import "material-theme/dark.css";
+@import "material-theme/light-mc.css";
+@import "material-theme/dark-mc.css";
+@import "material-theme/light-hc.css";
+@import "material-theme/dark-hc.css";
 
 /* ── 2. TWOJE NIEPROSZONE STATUS QUO (STAŁE STRONY) ── */
 :root {
