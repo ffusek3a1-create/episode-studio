@@ -141,3 +141,176 @@ section {
 ::-webkit-scrollbar         { width: 4px; }
 ::-webkit-scrollbar-track   { background: var(--color-bg); }
 ::-webkit-scrollbar-thumb   { background: var(--color-border2); border-radius: 2px; }
+
+/* DODATKOWY ELEMENT!!! 09.06 */
+
+/* Kontener główny */
+.services-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Pojedynczy wiersz usługi */
+.service-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 90px;
+  width: 100%;
+  border-radius: 45px;
+  background: #111111; /* Bardzo ciemne tło paska ze screena */
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* --- DELIKATNA POŚWIATA (Stan domyślny, przed hoverem) --- */
+
+/* Miętowa poświata dla usługi 01 */
+.service-item.is-mint {
+  border: 1px solid rgba(141, 221, 141, 0.15);
+  box-shadow: inset 0 0 20px rgba(141, 221, 141, 0.03);
+}
+
+/* Żółta poświata dla usługi 02 */
+.service-item.is-yellow {
+  border: 1px solid rgba(224, 224, 85, 0.15);
+  box-shadow: inset 0 0 20px rgba(224, 224, 85, 0.03);
+}
+
+/* Fioletowa/Niebieska poświata dla usługi 03 */
+.service-item.is-blue {
+  border: 1px solid rgba(96, 102, 238, 0.15);
+  box-shadow: inset 0 0 20px rgba(96, 102, 238, 0.03);
+}
+
+
+/* Okrągły badge po lewej stronie */
+.service-badge {
+  position: absolute;
+  left: -1px; /* Idealne wyrównanie do borderu rodzica */
+  top: -1px;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: #141414;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Dynamiczne dopasowanie ramek badge'a do koloru usługi */
+.service-item.is-mint .service-badge { border: 1px solid rgba(141, 221, 141, 0.25); }
+.service-item.is-yellow .service-badge { border: 1px solid rgba(224, 224, 85, 0.25); }
+.service-item.is-blue .service-badge { border: 1px solid rgba(96, 102, 238, 0.25); }
+
+.badge-icon {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* Baner z pełną treścią, ukryty domyślnie */
+.service-banner {
+  width: 90px;
+  height: 100%;
+  border-radius: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+  opacity: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+}
+
+/* --- STAN HOVER (Rozwinięcie) --- */
+.service-item:hover .service-badge {
+  opacity: 0;
+  transform: scale(0.8) rotate(-45deg);
+}
+
+.service-item:hover .service-banner {
+  width: 100%;
+  opacity: 1;
+}
+
+/* Kolory tła po rozwinięciu (pełny kolor) */
+.service-item.is-mint .badge-icon { color: #8DDD8D; }
+.service-item.is-mint:hover .service-banner { background: #8DDD8D; color: #000; }
+
+.service-item.is-yellow .badge-icon { color: #E0E055; }
+.service-item.is-yellow:hover .service-banner { background: #E0E055; color: #000; }
+
+.service-item.is-blue .badge-icon { color: #6066EE; }
+.service-item.is-blue:hover .service-banner { background: #6066EE; color: #000; }
+
+/* Wnętrze baneru */
+.service-content {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.4s ease 0.15s;
+}
+
+.service-item:hover .service-content {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.service-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  margin: 0;
+  font-weight: 300;
+}
+
+.service-divider {
+  width: 1px;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.service-description {
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* Przycisk CTA (Czarna pigułka) */
+.service-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #141414;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.75rem 1.75rem;
+  border-radius: 30px;
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.4s ease 0.2s;
+}
+
+.service-item:hover .service-cta {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.service-cta:hover {
+  background: #000;
+}
