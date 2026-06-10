@@ -84,7 +84,7 @@ function initScrollReveal() {
   if (!elements.length) return;
 
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         // staggered delay dla elementów wchodzących razem
         const delay = parseInt(entry.target.dataset.delay || 0);
@@ -140,26 +140,6 @@ function initContactForm() {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-
-    /* ─────────────────────────────────────────
-       Tu podłączasz swój backend formularza.
-
-       Opcja A — Formspree (najprostsze):
-         1. Załóż konto na formspree.io
-         2. Dodaj action="https://formspree.io/f/TWOJ_ID"
-            do <form> w index.html
-         3. Usuń e.preventDefault() wyżej
-
-       Opcja B — fetch do własnego API:
-         const data = new FormData(form);
-         fetch('/api/contact', { method: 'POST', body: data })
-           .then(r => r.ok ? showSuccess() : showError());
-
-       Opcja C — EmailJS (bez backendu):
-         emailjs.sendForm('SERVICE_ID', 'TEMPLATE_ID', form)
-           .then(() => showSuccess());
-    ───────────────────────────────────────── */
-
     showFormSuccess();
   });
 }
@@ -187,7 +167,6 @@ function initThemeToggle() {
   const html = document.documentElement;
   if (!btn) return;
 
-  // Odczyt preferencji: localStorage → domyślnie zawsze dark
   const saved  = localStorage.getItem('es-theme');
   const initial = saved ?? 'dark';
   applyTheme(initial);
@@ -206,107 +185,103 @@ function initThemeToggle() {
 
 
 /* ──────────────────────────────────────────
-   8. HERO — rotujący nagłówek
+   8. HERO — Przewijany Nagłówek (Zanikanie Scroll-Driven)
    ────────────────────────────────────────── */
 
 function initHeroRotation() {
-  const headingTrack = document.getElementById('hero-heading-track');
-  const tagTrack     = document.getElementById('hero-tag-track');
-  const headingSlot  = document.getElementById('hero-heading-slot');
-  if (!headingTrack || !tagTrack) return;
+  const hero    = document.querySelector('.hero');
+  const slot    = document.getElementById('hero-heading-slot');
+  const eyebrow = document.getElementById('hero-eyebrow');
+  const h0      = document.getElementById('hero-h0');
+  const h1      = document.getElementById('hero-h1');
+  if (!hero || !slot || !h0 || !h1) return;
 
-  const INTERVAL = 3800;
-  const EASE     = 'cubic-bezier(0.76, 0, 0.24, 1)';
-  const DUR      = '0.7s';
+  const slides = [
+    { eyebrow: 'Boutique Event Agency · Warszawa', el: h0 },
+    { eyebrow: 'Firmy i zespoły premium',           el: h1 },
+  ];
 
-  const headings = Array.from(headingTrack.querySelectorAll('.hero-h1'));
-  const tags     = Array.from(tagTrack.querySelectorAll('.hero-eyebrow'));
-  let current    = 0;
-  let animating  = false;
+  // Wymuszenie kontenera jako punktu odniesienia (relative) i wyczyszczenie flexa/gridu
+  slot.style.setProperty('position', 'relative', 'important');
+  slot.style.setProperty('display', 'block', 'important');
 
-  // Setup — wszystkie elementy absolute, pierwszy relative
-  headings.forEach((h, i) => {
-    if (i === 0) {
-      h.style.position  = 'relative';
-      h.style.transform = 'translateY(0)';
-      h.style.opacity   = '1';
+  // RESET ANIMACJI Z PLIKU CSS
+  h0.style.setProperty('animation', 'none', 'important');
+  h1.style.setProperty('animation', 'none', 'important');
+
+  // PIERWSZY NAGŁÓWEK (Pozycja bazowa)
+  h0.style.setProperty('position', 'relative', 'important');
+  h0.style.setProperty('top', '0', 'important');
+  h0.style.setProperty('left', '0', 'important');
+  h0.style.setProperty('margin', '0', 'important');
+  h0.style.setProperty('width', '100%', 'important');
+
+  // DRUGI NAGŁÓWEK (Nakładamy go dokładnie NA pierwszy i wyrywamy z dokumentu)
+  h1.style.setProperty('position', 'absolute', 'important');
+  h1.style.setProperty('top', '0', 'important');
+  h1.style.setProperty('left', '0', 'important');
+  h1.style.setProperty('margin', '0', 'important');
+  h1.style.setProperty('width', '100%', 'important');
+  
+  // Całkowite ukrycie fizyczne i wizualne drugiego nagłówka na starcie strony
+  h1.style.setProperty('opacity', '0', 'important');
+  h1.style.setProperty('visibility', 'hidden', 'important');
+
+  // Dynamiczne ustawianie wysokości slotu, żeby nic na dole nie skakało
+  function adjustSlotHeight() {
+    const maxHeight = Math.max(h0.scrollHeight, h1.scrollHeight);
+    slot.style.height = maxHeight + 'px';
+  }
+
+  window.addEventListener('resize', adjustSlotHeight);
+  adjustSlotHeight();
+
+  // Przetwarzanie przewijania
+  function handleHeroScroll() {
+    const scrollY = window.scrollY;
+    
+    // Dystans skrolowania w px, na którym zachodzi transformacja
+    const transitionDistance = 250; 
+    let progress = Math.min(Math.max(scrollY / transitionDistance, 0), 1);
+    const moveDistance = 25; 
+
+    // Sterowanie pierwszym nagłówkiem (Zanika)
+    h0.style.setProperty('opacity', (1 - progress).toFixed(3), 'important');
+    h0.style.transform = `translateY(${-progress * moveDistance}px)`;
+    if (progress >= 0.95) {
+      h0.style.setProperty('visibility', 'hidden', 'important');
     } else {
-      h.style.position  = 'absolute';
-      h.style.top       = '0';
-      h.style.left      = '0';
-      h.style.transform = 'translateY(110%)';
-      h.style.opacity   = '0';
+      h0.style.setProperty('visibility', 'visible', 'important');
     }
-  });
 
-  tags.forEach((t, i) => {
-    t.style.transform = i === 0 ? 'translateY(0)' : 'translateY(110%)';
-    t.style.opacity   = i === 0 ? '1' : '0';
-  });
+    // Sterowanie drugim nagłówkiem (Pojawia się)
+    if (progress > 0.02) {
+      h1.style.setProperty('visibility', 'visible', 'important');
+      h1.style.setProperty('opacity', progress.toFixed(3), 'important');
+    } else {
+      h1.style.setProperty('opacity', '0', 'important');
+      h1.style.setProperty('visibility', 'hidden', 'important');
+    }
+    h1.style.transform = `translateY(${(1 - progress) * moveDistance}px)`;
 
-  // Slot height = wysokość aktywnego h1
-  function syncHeight() {
-    headingSlot.style.height = headings[current].scrollHeight + 'px';
-  }
-  syncHeight();
+    // Płynna wymiana tekstu eyebrow
+    if (eyebrow) {
+      if (progress < 0.5) {
+        eyebrow.textContent = slides[0].eyebrow;
+        eyebrow.style.opacity = ((0.5 - progress) * 2).toFixed(2);
+      } else {
+        eyebrow.textContent = slides[1].eyebrow;
+        eyebrow.style.opacity = ((progress - 0.5) * 2).toFixed(2);
+      }
+    }
 
-  function nextSlide() {
-    if (animating) return;
-    animating = true;
-
-    const next = (current + 1) % headings.length;
-    const curH = headings[current];
-    const nxtH = headings[next];
-    const curT = tags[current];
-    const nxtT = tags[next];
-
-    // Przygotuj następny — bez animacji
-    nxtH.style.transition = 'none';
-    nxtH.style.position   = 'absolute';
-    nxtH.style.top        = '0';
-    nxtH.style.left       = '0';
-    nxtH.style.transform  = 'translateY(110%)';
-    nxtH.style.opacity    = '0';
-
-    nxtT.style.transition = 'none';
-    nxtT.style.transform  = 'translateY(110%)';
-    nxtT.style.opacity    = '0';
-
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        const trans = `transform ${DUR} ${EASE}, opacity 0.5s ease`;
-
-        // Wyjście
-        curH.style.transition = trans;
-        curH.style.transform  = 'translateY(-110%)';
-        curH.style.opacity    = '0';
-
-        curT.style.transition = trans;
-        curT.style.transform  = 'translateY(-110%)';
-        curT.style.opacity    = '0';
-
-        // Wejście
-        nxtH.style.transition = trans;
-        nxtH.style.transform  = 'translateY(0)';
-        nxtH.style.opacity    = '1';
-
-        nxtT.style.transition = trans;
-        nxtT.style.transform  = 'translateY(0)';
-        nxtT.style.opacity    = '1';
-
-        // Slot height
-        headingSlot.style.transition = `height ${DUR} ${EASE}`;
-        headingSlot.style.height     = nxtH.scrollHeight + 'px';
-
-        setTimeout(() => {
-          current   = next;
-          animating = false;
-        }, 750);
-      });
-    });
+    hero.classList.toggle('is-active', progress > 0.5);
   }
 
-  setInterval(nextSlide, INTERVAL);
+  window.addEventListener('scroll', handleHeroScroll, { passive: true });
+  handleHeroScroll();
+  
+  window.addEventListener('load', adjustSlotHeight);
 }
 
 

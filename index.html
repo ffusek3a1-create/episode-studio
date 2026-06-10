@@ -5,22 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Episode Studio — Boutique Event Agency</title>
 
-  <!-- Fonty Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
 
-  <!-- Style — kolejność ma znaczenie -->
-  <link rel="stylesheet" href="css/01-tokens.css">     <!-- zmienne, kolory, fonty -->
-  <link rel="stylesheet" href="css/02-base.css">       <!-- reset, typografia, przyciski -->
-  <link rel="stylesheet" href="css/03-animations.css"> <!-- keyframes, scroll reveal -->
-  <link rel="stylesheet" href="css/04-components.css"> <!-- wszystkie komponenty -->
-</head>
+  <link rel="stylesheet" href="css/01-tokens.css">     <link rel="stylesheet" href="css/02-base.css">       <link rel="stylesheet" href="css/03-animations.css"> <link rel="stylesheet" href="css/04-components.css"> </head>
 <body>
 
-<!-- ═══════════════════════════════════════
-     NAV
-═══════════════════════════════════════ -->
 <nav>
   <a class="nav-logo" href="#">Episode Studio</a>
   <ul class="nav-links">
@@ -46,44 +37,48 @@
 </nav>
 
 
-<!-- ═══════════════════════════════════════
-     HERO
-═══════════════════════════════════════ -->
 <section class="hero">
-  <div class="hero-line"></div>
 
-  <!-- TAG — zmienia się razem z nagłówkiem -->
-  <div class="hero-tag-slot">
-    <div class="hero-tag-track" id="hero-tag-track">
-      <p class="hero-eyebrow">Boutique Event Agency · Warszawa</p>
-      <p class="hero-eyebrow">Firmy i zespoły premium</p>
-      <p class="hero-eyebrow">Pary szukające wyjątkowości</p>
+  <div class="hero-visual" id="hero-visual">
+    <div class="hero-pill" id="hero-pill">
+      <div class="hero-pill-bg" id="hero-pill-bg"></div>
+      <div class="hero-pill-monogram">
+        <div id="lottie-container" class="hero-lottie-spacer"></div>
+      </div>
+      <div class="hero-pill-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+        </svg>
+      </div>
     </div>
   </div>
 
-  <!-- NAGŁÓWEK — bloki wjeżdżają i wyjeżdżają jako całość -->
-  <div class="hero-heading-slot" id="hero-heading-slot">
-    <div class="hero-heading-track" id="hero-heading-track">
-      <h1 class="hero-h1">Każde zdarzenie<br>ma <em>swój moment.</em></h1>
-      <h1 class="hero-h1">Każda firma<br>zasługuje na <em>własną historię.</em></h1>
-      <h1 class="hero-h1">Każda ceremonia<br>zaczyna się od <em>jednej rozmowy.</em></h1>
+  <div class="hero-content">
+
+    <div class="hero-content-top">
+      <p class="hero-eyebrow" id="hero-eyebrow">Boutique Event Agency · Warszawa</p>
+
+      <div class="hero-heading-slot" id="hero-heading-slot">
+        <div class="hero-heading-track" id="hero-heading-track">
+          <h1 class="hero-h1" id="hero-h0">Każde zdarzenie<br>ma <em>swój moment.</em></h1>
+          <h1 class="hero-h1" id="hero-h1">Każda firma<br>zasługuje na<br><em>własną historię.</em></h1>
+        </div>
+      </div>
     </div>
+
+    <div class="hero-content-bottom">
+      <p class="hero-sub">Dla firm, które chcą więcej niż imprezy. Dla par, które chcą więcej niż organizatora.</p>
+      <p class="hero-sub hero-sub--bold">Boutique Event Agency: team-building, off-site, ceremonie, aktywacje marek.</p>
+    </div>
+
   </div>
 
-  <p class="hero-sub">Dla firm, które chcą więcej niż imprezy. Dla par, które chcą więcej niż organizatora.</p>
-  <div class="hero-actions">
-    <a class="btn-primary" href="#" onclick="openModal(); return false;">Umów bezpłatną rozmowę</a>
-    <a class="btn-ghost" href="#services">Sprawdź ofertę</a>
-  </div>
   <span class="hero-vertical-label">Episode Studio · 2026</span>
 </section>
 
 
 
 
-<!-- ═══════════════════════════════════════
-     INTRO
-═══════════════════════════════════════ -->
 <section class="intro" id="intro">
   <div class="container">
     <div class="intro-inner">
@@ -118,9 +113,6 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     SERVICES
-═══════════════════════════════════════ -->
 <section class="services" id="services">
   <div class="container">
 
@@ -134,7 +126,6 @@
 
     <div class="services-accordion reveal">
 
-      <!-- ── Corporate Episodes ── -->
       <div class="service-item is-open" id="acc-corporate">
         <div class="service-banner" onclick="toggleAccordion('acc-corporate')">
           <div class="service-meta">
@@ -185,7 +176,6 @@
         </div>
       </div>
 
-      <!-- ── Private Episodes ── -->
       <div class="service-item" id="acc-private">
         <div class="service-banner" onclick="toggleAccordion('acc-private')">
           <div class="service-meta">
@@ -236,7 +226,6 @@
         </div>
       </div>
 
-      <!-- ── Content & CSR ── -->
       <div class="service-item" id="acc-content">
         <div class="service-banner" onclick="toggleAccordion('acc-content')">
           <div class="service-meta">
@@ -282,9 +271,6 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     PROCESS
-═══════════════════════════════════════ -->
 <section class="process" id="process">
   <div class="container">
 
@@ -364,9 +350,6 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     ABOUT
-═══════════════════════════════════════ -->
 <section class="about" id="about">
   <div class="container">
     <div class="about-inner">
@@ -394,11 +377,6 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     IMAGE SECTION (parallax)
-     Zamień URL w css/04-components.css
-     (sekcja .image-section-bg) na własne zdjęcie.
-═══════════════════════════════════════ -->
 <section class="image-section" id="image-parallax">
   <div class="image-section-bg" id="parallax-bg"></div>
   <div class="image-section-overlay"></div>
@@ -411,9 +389,6 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     CONTACT
-═══════════════════════════════════════ -->
 <section class="contact-section" id="contact">
   <div class="container">
     <div class="contact-inner">
@@ -423,7 +398,6 @@
         <h2 class="section-h2">Napisz do nas.<br><em>Odezwiemy się szybko.</em></h2>
         <p class="section-lead" style="margin-bottom:0;">Wypełnij formularz lub umów rozmowę — bez presji, bez zobowiązań. Opowiedz nam o swoim pomyśle, a my odezwiemy się w ciągu 24 godzin.</p>
 
-        <!-- Formularz — podłącz backend w js/main.js (sekcja initContactForm) -->
         <form class="contact-form" id="contact-form">
           <div class="form-row">
             <div class="form-field">
@@ -477,7 +451,6 @@
       <div class="contact-right reveal">
         <div class="contact-detail-block">
           <p class="contact-detail-label">E-mail</p>
-          <!-- Zamień na właściwy adres -->
           <p class="contact-detail-value"><a href="mailto:hello@episodestudio.pl">hello@episodestudio.pl</a></p>
         </div>
         <div class="contact-detail-block">
@@ -495,7 +468,6 @@
           <p class="contact-calendly-label">Preferujesz rozmowę?</p>
           <h3 class="contact-calendly-h">Zarezerwuj <em>30 minut</em></h3>
           <p class="contact-calendly-desc">Wybierz termin w kalendarzu — bez formularzy, bez oczekiwania.</p>
-          <!-- Zamień href na właściwy link Calendly -->
           <a class="btn-primary" href="#" onclick="openModal(); return false;" style="font-size:11px; padding:0.75rem 1.5rem;">Umów przez Calendly</a>
         </div>
       </div>
@@ -505,9 +477,6 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     FOOTER
-═══════════════════════════════════════ -->
 <footer>
   <span class="footer-logo">Episode Studio</span>
   <ul class="footer-links">
@@ -519,24 +488,19 @@
 </footer>
 
 
-<!-- ═══════════════════════════════════════
-     MODAL (Calendly)
-     Zamień href w .modal-calendly-btn na
-     właściwy link do Twojego kalendarza.
-═══════════════════════════════════════ -->
 <div class="modal-overlay" id="modal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <p class="modal-label">Bezpłatna konsultacja</p>
     <h2 class="modal-h">Umów<br><em>30-minutową rozmowę</em></h2>
     <p class="modal-desc">Wybierz termin, który Ci odpowiada. Porozmawiamy o Twoim evencie — bez zobowiązań i bez presji sprzedażowej.</p>
-    <!-- Zamień href na właściwy link Calendly -->
     <a class="modal-calendly-btn" href="https://calendly.com" target="_blank">Otwórz kalendarz → Calendly</a>
     <p class="modal-alt">Wolisz e-mail? Napisz na <a href="mailto:hello@episodestudio.pl">hello@episodestudio.pl</a></p>
   </div>
 </div>
 
-<!-- Skrypt — na końcu body dla szybszego ładowania -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
 <script src="js/main.js"></script>
 
 </body>

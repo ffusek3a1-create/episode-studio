@@ -17,7 +17,7 @@
   --font-sans:   'Jost', sans-serif;
 
   /* Skale nagłówków */
-  --text-hero:   clamp(3.5rem, 7.5vw, 7rem);
+  --text-hero: clamp(2.8rem, 6vw, 5.5rem);
   --text-h2:     clamp(2rem, 4vw, 3.25rem);
   --text-h3:     1.35rem;
   --text-quote:  clamp(1.6rem, 3vw, 2.5rem);
