@@ -80,10 +80,14 @@ nav {
 
 .hero {
   position:        relative;
-  min-height:      100vh;
+  min-height:      105vh; /* Podwyższamy bazową wysokość sekcji powyżej standardowego ekranu */
   display:         grid;
   grid-template-columns: 44% 1fr;
+  align-items:     center; /* Centruje zawartość obu kolumn idealnie w pionie */
+  padding-top:     8rem;   /* Dodatkowy oddech od góry (dla menu nawigacji) */
+  padding-bottom:  8rem;   /* Dodatkowy przestronny oddech od dołu */
   overflow:        hidden;
+  background:      var(--color-bg);
 }
 
 /* ── LEWA: monogram ── */

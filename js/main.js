@@ -30,9 +30,7 @@ function toggleAccordion(id) {
   const item = document.getElementById(id);
   if (!item) return;
   const isOpen = item.classList.contains('is-open');
-  // Zamknij wszystkie
   document.querySelectorAll('.service-item').forEach(el => el.classList.remove('is-open'));
-  // Otwórz kliknięty (jeśli nie był otwarty)
   if (!isOpen) item.classList.add('is-open');
 }
 
@@ -47,12 +45,10 @@ function initModal() {
   const overlay = document.getElementById('modal');
   if (!overlay) return;
 
-  // zamknięcie klikiem w tło
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) closeModal();
   });
 
-  // zamknięcie klawiszem Escape
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
   });
@@ -68,15 +64,12 @@ function closeModal() {
   document.body.style.overflow = '';
 }
 
-// Globalnie — wywoływane z atrybutów onclick
 window.openModal  = openModal;
 window.closeModal = closeModal;
 
 
 /* ──────────────────────────────────────────
    4. SCROLL REVEAL
-   Obserwuje elementy z klasą .reveal i dodaje
-   klasę .visible gdy wejdą w viewport.
    ────────────────────────────────────────── */
 
 function initScrollReveal() {
@@ -86,7 +79,6 @@ function initScrollReveal() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        // staggered delay dla elementów wchodzących razem
         const delay = parseInt(entry.target.dataset.delay || 0);
         setTimeout(() => entry.target.classList.add('visible'), delay);
         observer.unobserve(entry.target);
@@ -107,7 +99,6 @@ function initImageSection() {
   const bg      = document.getElementById('parallax-bg');
   if (!section || !bg) return;
 
-  // reveal przy wejściu w viewport
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) e.target.classList.add('is-visible');
@@ -116,7 +107,6 @@ function initImageSection() {
 
   revealObserver.observe(section);
 
-  // parallax przy scrollu
   function updateParallax() {
     const rect = section.getBoundingClientRect();
     if (rect.top < window.innerHeight && rect.bottom > 0) {
@@ -185,76 +175,86 @@ function initThemeToggle() {
 
 
 /* ──────────────────────────────────────────
-   8. HERO — Przewijany Nagłówek (Zanikanie Scroll-Driven)
+   8. HERO — Płynna, asymetryczna wymiana nagłówków (Scroll-Driven)
    ────────────────────────────────────────── */
 
 function initHeroRotation() {
   const hero    = document.querySelector('.hero');
-  const slot    = document.getElementById('hero-heading-slot');
+  const track   = document.getElementById('hero-heading-track');
   const eyebrow = document.getElementById('hero-eyebrow');
   const h0      = document.getElementById('hero-h0');
   const h1      = document.getElementById('hero-h1');
-  if (!hero || !slot || !h0 || !h1) return;
+  if (!hero || !track || !h0 || !h1) return;
 
   const slides = [
-    { eyebrow: 'Boutique Event Agency · Warszawa', el: h0 },
-    { eyebrow: 'Firmy i zespoły premium',           el: h1 },
+    { eyebrow: 'Boutique Event Agency · Warszawa' },
+    { eyebrow: 'Firmy i zespoły premium' },
   ];
 
-  // Wymuszenie kontenera jako punktu odniesienia (relative) i wyczyszczenie flexa/gridu
-  slot.style.setProperty('position', 'relative', 'important');
-  slot.style.setProperty('display', 'block', 'important');
+  // WYMUSZENIE UKŁADU ASYMETRYCZNEGO W JAVASCRIPT
+  // Kontener nadrzędny staje się pozycją odniesienia o stałej, bezpiecznej wysokości
+  track.style.setProperty('position', 'relative', 'important');
+  track.style.setProperty('display', 'block', 'important');
 
-  // RESET ANIMACJI Z PLIKU CSS
+  // Całkowite odpięcie domyślnych animacji wchodzących CSS (fadeUp), aby nie blokowały scrolla
   h0.style.setProperty('animation', 'none', 'important');
   h1.style.setProperty('animation', 'none', 'important');
 
-  // PIERWSZY NAGŁÓWEK (Pozycja bazowa)
+  // NAGŁÓWEK 1 (#hero-h0): Zostaje po lewej stronie, tak jak stał pierwotnie
   h0.style.setProperty('position', 'relative', 'important');
   h0.style.setProperty('top', '0', 'important');
   h0.style.setProperty('left', '0', 'important');
+  h0.style.setProperty('text-align', 'left', 'important');
   h0.style.setProperty('margin', '0', 'important');
   h0.style.setProperty('width', '100%', 'important');
 
-  // DRUGI NAGŁÓWEK (Nakładamy go dokładnie NA pierwszy i wyrywamy z dokumentu)
+  // NAGŁÓWEK 2 (#hero-h1): Przeniesiony w prawy dolny róg kontenera track
   h1.style.setProperty('position', 'absolute', 'important');
-  h1.style.setProperty('top', '0', 'important');
-  h1.style.setProperty('left', '0', 'important');
+  h1.style.setProperty('bottom', '0', 'important');
+  h1.style.setProperty('right', '0', 'important');
+  h1.style.setProperty('text-align', 'right', 'important'); // Tekst wyrównany do prawej strony
   h1.style.setProperty('margin', '0', 'important');
-  h1.style.setProperty('width', '100%', 'important');
+  h1.style.setProperty('width', 'auto', 'important');
   
-  // Całkowite ukrycie fizyczne i wizualne drugiego nagłówka na starcie strony
+  // Ukrycie wizualne i fizyczne drugiego nagłówka na samym starcie strony
   h1.style.setProperty('opacity', '0', 'important');
   h1.style.setProperty('visibility', 'hidden', 'important');
 
-  // Dynamiczne ustawianie wysokości slotu, żeby nic na dole nie skakało
-  function adjustSlotHeight() {
-    const maxHeight = Math.max(h0.scrollHeight, h1.scrollHeight);
-    slot.style.height = maxHeight + 'px';
+  // Funkcja obliczająca przestrzeń, aby wysoki nagłówek po prawej nie uciął się ani nie najechał na przyciski poniżej
+  function adjustTrackHeight() {
+    // Ponieważ h1 ma trzy linijki i jest po prawej na dole, kontener musi mieć odpowiedni zapas wysokości
+    const baseHeight = h0.scrollHeight;
+    const secondHeight = h1.scrollHeight;
+    // Dajemy bezpieczny margines wysokości (w pionie nagłówki zmieszczą się obok siebie / schodkowo)
+    track.style.height = (baseHeight + secondHeight * 0.4) + 'px';
   }
 
-  window.addEventListener('resize', adjustSlotHeight);
-  adjustSlotHeight();
+  window.addEventListener('resize', adjustTrackHeight);
+  adjustTrackHeight();
 
-  // Przetwarzanie przewijania
+  // Obsługa scrolla — precyzyjne sterowanie widocznością i przemieszczaniem
   function handleHeroScroll() {
     const scrollY = window.scrollY;
     
-    // Dystans skrolowania w px, na którym zachodzi transformacja
-    const transitionDistance = 250; 
+    // Dystans przewijania (w pikselach), na którym zachodzi pełna animacja
+    const transitionDistance = 280; 
     let progress = Math.min(Math.max(scrollY / transitionDistance, 0), 1);
+
+    // Amplituda delikatnego ruchu tekstu (w pikselach)
     const moveDistance = 25; 
 
-    // Sterowanie pierwszym nagłówkiem (Zanika)
+    // REAKCJA PIERWSZEGO NAGŁÓWKA (#hero-h0) — Zanika i przesuwa się w lewo/górę
     h0.style.setProperty('opacity', (1 - progress).toFixed(3), 'important');
-    h0.style.transform = `translateY(${-progress * moveDistance}px)`;
-    if (progress >= 0.95) {
+    h0.style.transform = `translate(${-progress * (moveDistance / 2)}px, ${-progress * moveDistance}px)`;
+    
+    // Gdy całkowicie przewiniemy dystans, chowamy go systemowo ze struktury widoku
+    if (progress >= 0.98) {
       h0.style.setProperty('visibility', 'hidden', 'important');
     } else {
       h0.style.setProperty('visibility', 'visible', 'important');
     }
 
-    // Sterowanie drugim nagłówkiem (Pojawia się)
+    // REAKCJA DRUGIEGO NAGŁÓWKA (#hero-h1) — Pojawia się w prawym dolnym rogu i unosi z dołu
     if (progress > 0.02) {
       h1.style.setProperty('visibility', 'visible', 'important');
       h1.style.setProperty('opacity', progress.toFixed(3), 'important');
@@ -264,7 +264,7 @@ function initHeroRotation() {
     }
     h1.style.transform = `translateY(${(1 - progress) * moveDistance}px)`;
 
-    // Płynna wymiana tekstu eyebrow
+    // Płynna, synchroniczna wymiana tekstu nadtytułu (eyebrow)
     if (eyebrow) {
       if (progress < 0.5) {
         eyebrow.textContent = slides[0].eyebrow;
@@ -278,10 +278,12 @@ function initHeroRotation() {
     hero.classList.toggle('is-active', progress > 0.5);
   }
 
+  // Włączenie nasłuchiwania przewijania i natychmiastowa inicjalizacja stanu zerowego
   window.addEventListener('scroll', handleHeroScroll, { passive: true });
   handleHeroScroll();
   
-  window.addEventListener('load', adjustSlotHeight);
+  // Ostateczna korekta wysokości po pełnym załadowaniu fontów na stronie
+  window.addEventListener('load', adjustTrackHeight);
 }
 
 
