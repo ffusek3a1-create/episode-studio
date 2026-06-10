@@ -204,11 +204,136 @@ function initThemeToggle() {
 
 
 /* ──────────────────────────────────────────
+   8. HERO — rotujący nagłówek
+   ────────────────────────────────────────── */
+
+function initHeroRotation() {
+  const headingTrack = document.getElementById('hero-heading-track');
+  const tagTrack     = document.getElementById('hero-tag-track');
+  const headingSlot  = document.getElementById('hero-heading-slot');
+  if (!headingTrack || !tagTrack) return;
+
+  const INTERVAL = 3800;
+  const EASE     = 'cubic-bezier(0.76, 0, 0.24, 1)';
+  const DUR      = '0.7s';
+
+  const headings = Array.from(headingTrack.querySelectorAll('.hero-h1'));
+  const tags     = Array.from(tagTrack.querySelectorAll('.hero-eyebrow'));
+  let current    = 0;
+  let animating  = false;
+
+  // Setup — wszystkie elementy absolute, pierwszy relative
+  headings.forEach((h, i) => {
+    if (i === 0) {
+      h.style.position  = 'relative';
+      h.style.transform = 'translateY(0)';
+      h.style.opacity   = '1';
+    } else {
+      h.style.position  = 'absolute';
+      h.style.top       = '0';
+      h.style.left      = '0';
+      h.style.transform = 'translateY(110%)';
+      h.style.opacity   = '0';
+    }
+  });
+
+  tags.forEach((t, i) => {
+    t.style.transform = i === 0 ? 'translateY(0)' : 'translateY(110%)';
+    t.style.opacity   = i === 0 ? '1' : '0';
+  });
+
+  // Slot height = wysokość aktywnego h1
+  function syncHeight() {
+    headingSlot.style.height = headings[current].scrollHeight + 'px';
+  }
+  syncHeight();
+
+  function nextSlide() {
+    if (animating) return;
+    animating = true;
+
+    const next = (current + 1) % headings.length;
+    const curH = headings[current];
+    const nxtH = headings[next];
+    const curT = tags[current];
+    const nxtT = tags[next];
+
+    // Przygotuj następny — bez animacji
+    nxtH.style.transition = 'none';
+    nxtH.style.position   = 'absolute';
+    nxtH.style.top        = '0';
+    nxtH.style.left       = '0';
+    nxtH.style.transform  = 'translateY(110%)';
+    nxtH.style.opacity    = '0';
+
+    nxtT.style.transition = 'none';
+    nxtT.style.transform  = 'translateY(110%)';
+    nxtT.style.opacity    = '0';
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const trans = `transform ${DUR} ${EASE}, opacity 0.5s ease`;
+
+        // Wyjście
+        curH.style.transition = trans;
+        curH.style.transform  = 'translateY(-110%)';
+        curH.style.opacity    = '0';
+
+        curT.style.transition = trans;
+        curT.style.transform  = 'translateY(-110%)';
+        curT.style.opacity    = '0';
+
+        // Wejście
+        nxtH.style.transition = trans;
+        nxtH.style.transform  = 'translateY(0)';
+        nxtH.style.opacity    = '1';
+
+        nxtT.style.transition = trans;
+        nxtT.style.transform  = 'translateY(0)';
+        nxtT.style.opacity    = '1';
+
+        // Slot height
+        headingSlot.style.transition = `height ${DUR} ${EASE}`;
+        headingSlot.style.height     = nxtH.scrollHeight + 'px';
+
+        setTimeout(() => {
+          current   = next;
+          animating = false;
+        }, 750);
+      });
+    });
+  }
+
+  setInterval(nextSlide, INTERVAL);
+}
+
+
+/* ──────────────────────────────────────────
+   9. PILL ACCORDION
+   ────────────────────────────────────────── */
+
+function initPillAccordion() {
+  const pills = document.querySelectorAll('.pill-row');
+  if (!pills.length) return;
+
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      if (pill.classList.contains('active')) return;
+      pills.forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+}
+
+
+/* ──────────────────────────────────────────
    INIT — uruchomienie wszystkich modułów
    ────────────────────────────────────────── */
 
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
+  initHeroRotation();
+  initPillAccordion();
   initNav();
   initModal();
   initScrollReveal();
