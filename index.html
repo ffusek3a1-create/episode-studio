@@ -79,71 +79,6 @@
 </section>
 
 
-<!-- ═══════════════════════════════════════
-     OFERTA — PILL ACCORDION
-═══════════════════════════════════════ -->
-<section class="pills" id="offer">
-  <div class="container">
-
-    <div class="pill-row active" data-href="#services">
-      <div class="pill-inner">
-        <div class="pill-label">
-          <span class="pill-prefix">Oferta</span>
-          <span class="pill-sep">:</span>
-          <span class="pill-title">Corporate Episodes</span>
-        </div>
-        <div class="pill-divider"></div>
-        <p class="pill-desc">Team-building, off-site i aktywacje dla firm,<br>które traktują doświadczenie poważnie.</p>
-        <div class="pill-spacer"></div>
-        <div class="pill-cta">
-          <span class="pill-cta-label">Poznaj ofertę</span>
-          <div class="pill-cta-circle">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="pill-row" data-href="#services">
-      <div class="pill-inner">
-        <div class="pill-label">
-          <span class="pill-prefix">Oferta</span>
-          <span class="pill-sep">:</span>
-          <span class="pill-title">Private Episodes</span>
-        </div>
-        <div class="pill-divider"></div>
-        <p class="pill-desc">Wesela, zaręczyny i prywatne uroczystości,<br>gdzie każdy detal ma swoje znaczenie.</p>
-        <div class="pill-spacer"></div>
-        <div class="pill-cta">
-          <span class="pill-cta-label">Poznaj ofertę</span>
-          <div class="pill-cta-circle">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="pill-row" data-href="#services">
-      <div class="pill-inner">
-        <div class="pill-label">
-          <span class="pill-prefix">Oferta</span>
-          <span class="pill-sep">:</span>
-          <span class="pill-title">Content & CSR</span>
-        </div>
-        <div class="pill-divider"></div>
-        <p class="pill-desc">Eventy z misją i treścią — zaprojektowane<br>z myślą o przekazie, nie tylko o estetyce.</p>
-        <div class="pill-spacer"></div>
-        <div class="pill-cta">
-          <span class="pill-cta-label">Poznaj ofertę</span>
-          <div class="pill-cta-circle">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</section>
 
 
 <!-- ═══════════════════════════════════════
@@ -192,88 +127,157 @@
     <div class="services-header reveal">
       <div>
         <p class="section-label">Oferta</p>
-        <h2 class="section-h2">Co robimy<br><em>naprawdę dobrze</em></h2>
+        <h2 class="section-h2">Trzy ścieżki,<br><em>jeden standard.</em></h2>
       </div>
-      <p class="section-lead">Dwie ścieżki, jeden standard. Niezależnie czy przychodzisz z ramienia firmy czy jako para — dostajecie ten sam poziom uwagi i zaangażowania.</p>
+      <p class="section-lead">Niezależnie czy przychodzisz z ramienia firmy, jako para czy jako marka — dostajecie ten sam poziom uwagi i zaangażowania.</p>
     </div>
 
-    <div class="services-tabs reveal">
-      <button class="tab-btn active" onclick="switchTab('b2b', this)">B2B — dla firm</button>
-      <button class="tab-btn" onclick="switchTab('b2c', this)">B2C — dla par i osób</button>
-    </div>
+    <div class="services-accordion reveal">
 
-    <!-- B2B -->
-    <div class="services-panel active" id="panel-b2b">
-      <div class="services-grid">
-        <div class="service-card">
-          <span class="service-num">01</span>
-          <h3 class="service-title">Team-building<br><em>z programem</em></h3>
-          <p class="service-desc">Survival, kulinarnie, city quest, sport — nie impreza, lecz doświadczenie, które realnie łączy zespół. Szczególnie dla teamów zdalnych i hybrydowych.</p>
+      <!-- ── Corporate Episodes ── -->
+      <div class="service-item is-open" id="acc-corporate">
+        <div class="service-banner" onclick="toggleAccordion('acc-corporate')">
+          <div class="service-meta">
+            <span class="service-num">01</span>
+            <span class="service-tag">B2B</span>
+          </div>
+          <h3 class="service-title">Corporate <em>Episodes</em></h3>
+          <span class="service-divider"></span>
+          <p class="service-description">Eventy dla firm, które traktują doświadczenie poważnie.</p>
+          <div class="service-spacer"></div>
+          <button class="service-cta" aria-label="Rozwiń ofertę Corporate">
+            <svg class="cta-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z" fill="currentColor"/></svg>
+          </button>
         </div>
-        <div class="service-card">
-          <span class="service-num">02</span>
-          <h3 class="service-title">Off-site<br><em>dla zarządów</em></h3>
-          <p class="service-desc">Kameralne wyjazdy łączące pracę z luksusowym odpoczynkiem. Zapewniamy pełną dyskrecję, nienaganną logistykę i tempo dopasowane do dynamiki liderów.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-num">03</span>
-          <h3 class="service-title">Brand<br><em>activations</em></h3>
-          <p class="service-desc">Premiery produktów i wydarzenia w nieoczywistych przestrzeniach. Przekładamy wartości Twojej marki na język zmysłów, tworząc doświadczenia, o których mówi się miesiącami.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-num">04</span>
-          <h3 class="service-title">Employer<br><em>branding</em></h3>
-          <p class="service-desc">Wydarzenia, które materializują kulturę Twojej organizacji. Budujemy silne poczucie przynależności i dumy z marki, przekształcając pracowników w jej najsilniejszych ambasadorów.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-num">05</span>
-          <h3 class="service-title">Wyjazdy dla<br><em>top klientów</em></h3>
-          <p class="service-desc">Zagraniczne tripy dla managementu lub kluczowych klientów. Doświadczenie, dyskrecja i perfekcyjna logistyka na każdym etapie.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-num">06</span>
-          <h3 class="service-title">Eventy<br><em>CSR i ESG</em></h3>
-          <p class="service-desc">Wydarzenia z głębszym sensem, łączące integrację biznesu z realnym wsparciem lokalnych społeczności i ekologii. Nadajemy odpowiedzialności biznesowej namacalną formę.</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- B2C -->
-    <div class="services-panel" id="panel-b2c">
-      <div class="services-grid">
-        <div class="service-card">
-          <span class="service-num">01</span>
-          <h3 class="service-title">Micro-wedding<br><em>i ceremonie</em></h3>
-          <p class="service-desc">Mniej gości, więcej uwagi na każdy detal. Plener lub wyjątkowa przestrzeń — zawsze z naciskiem na estetykę i atmosferę.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-num">02</span>
-          <h3 class="service-title">Zaręczyny<br><em>i propozycje</em></h3>
-          <p class="service-desc">Gotowe scenariusze lub projekty tworzone od zera — zarówno kameralne jak i spektakularne. Moment, który zapamięta się na całe życie.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-num">03</span>
-          <h3 class="service-title">Urodziny<br><em>dla dorosłych</em></h3>
-          <p class="service-desc">Premium, retro, sportowe, klubowe — temat dopasowany do osobowości, nie do szablonu.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-num">04</span>
-          <h3 class="service-title">Eventy<br><em>outdoorowe</em></h3>
-          <p class="service-desc">Prywatne pikniki, kolacje w ogrodzie, garden parties, kameralne ceremonie pod chmurką. Natura jako scenografia.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-num">05</span>
-          <h3 class="service-title">Baby shower<br><em>i rocznice</em></h3>
-          <p class="service-desc">Eventy rodzinne z wysokim poziomem personalizacji — baby shower, gender reveal, rocznice i inne momenty, które zasługują na oprawę.</p>
-        </div>
-        <div class="service-card">
-          <span class="service-num">06</span>
-          <h3 class="service-title">Once-in-a-lifetime<br><em>experiences</em></h3>
-          <p class="service-desc">Eventy zaprojektowane wokół jednej emocji lub osobistej historii klienta. Dla tych, którzy chcą przekazać coś niepowtarzalnego.</p>
+        <div class="service-body">
+          <div class="service-grid">
+            <div class="service-card">
+              <span class="card-num">01</span>
+              <h4>Team-building<br><em>z programem</em></h4>
+              <p>Survival, kulinarnie, city quest, sport — nie impreza, lecz doświadczenie, które realnie łączy zespół.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">02</span>
+              <h4>Off-site<br><em>dla zarządów</em></h4>
+              <p>Kameralne wyjazdy łączące pracę z luksusowym odpoczynkiem. Pełna dyskrecja i perfekcyjna logistyka.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">03</span>
+              <h4>Brand<br><em>activations</em></h4>
+              <p>Premiery produktów i wydarzenia w nieoczywistych przestrzeniach. Wartości marki w języku zmysłów.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">04</span>
+              <h4>Employer<br><em>branding</em></h4>
+              <p>Wydarzenia, które materializują kulturę organizacji. Pracownicy jako ambasadorzy marki.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">05</span>
+              <h4>Wyjazdy dla<br><em>top klientów</em></h4>
+              <p>Zagraniczne tripy dla managementu lub kluczowych klientów. Dyskrecja na każdym etapie.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">06</span>
+              <h4>Eventy<br><em>CSR i ESG</em></h4>
+              <p>Integracja z realnym wsparciem społeczności i ekologii. Odpowiedzialność biznesowa w namacalnej formie.</p>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
 
+      <!-- ── Private Episodes ── -->
+      <div class="service-item" id="acc-private">
+        <div class="service-banner" onclick="toggleAccordion('acc-private')">
+          <div class="service-meta">
+            <span class="service-num">02</span>
+            <span class="service-tag">B2C</span>
+          </div>
+          <h3 class="service-title">Private <em>Episodes</em></h3>
+          <span class="service-divider"></span>
+          <p class="service-description">Ceremonie i uroczystości, gdzie każdy detal ma znaczenie.</p>
+          <div class="service-spacer"></div>
+          <button class="service-cta" aria-label="Rozwiń ofertę Private">
+            <svg class="cta-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z" fill="currentColor"/></svg>
+          </button>
+        </div>
+        <div class="service-body">
+          <div class="service-grid">
+            <div class="service-card">
+              <span class="card-num">01</span>
+              <h4>Micro-wedding<br><em>i ceremonie</em></h4>
+              <p>Mniej gości, więcej uwagi na każdy detal. Plener lub wyjątkowa przestrzeń — zawsze z naciskiem na estetykę.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">02</span>
+              <h4>Zaręczyny<br><em>i propozycje</em></h4>
+              <p>Gotowe scenariusze lub projekty od zera — kameralne i spektakularne. Moment na całe życie.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">03</span>
+              <h4>Urodziny<br><em>dla dorosłych</em></h4>
+              <p>Premium, retro, sportowe, klubowe — temat dopasowany do osobowości, nie do szablonu.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">04</span>
+              <h4>Eventy<br><em>outdoorowe</em></h4>
+              <p>Prywatne pikniki, kolacje w ogrodzie, garden parties. Natura jako scenografia.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">05</span>
+              <h4>Baby shower<br><em>i rocznice</em></h4>
+              <p>Eventy rodzinne z wysokim poziomem personalizacji — baby shower, gender reveal, rocznice.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">06</span>
+              <h4>Once-in-a-lifetime<br><em>experiences</em></h4>
+              <p>Eventy zaprojektowane wokół jednej emocji lub osobistej historii klienta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Content & CSR ── -->
+      <div class="service-item" id="acc-content">
+        <div class="service-banner" onclick="toggleAccordion('acc-content')">
+          <div class="service-meta">
+            <span class="service-num">03</span>
+            <span class="service-tag">Niche</span>
+          </div>
+          <h3 class="service-title">Content <em>& CSR</em></h3>
+          <span class="service-divider"></span>
+          <p class="service-description">Eventy z misją i treścią, zaprojektowane z myślą o przekazie.</p>
+          <div class="service-spacer"></div>
+          <button class="service-cta" aria-label="Rozwiń ofertę Content & CSR">
+            <svg class="cta-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z" fill="currentColor"/></svg>
+          </button>
+        </div>
+        <div class="service-body">
+          <div class="service-grid">
+            <div class="service-card">
+              <span class="card-num">01</span>
+              <h4>Eventy<br><em>społecznościowe</em></h4>
+              <p>Dla niszowych społeczności — motorsport, wino, design thinking, medytacja, outdoor. Wspólna pasja jako spoiwo.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">02</span>
+              <h4>Warsztaty<br><em>experiential</em></h4>
+              <p>Sesje łączące naukę z przeżyciem — leadership, storytelling, kulinarnie, kreatywność w działaniu.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">03</span>
+              <h4>Content-first<br><em>events</em></h4>
+              <p>Zaprojektowane z myślą o social media i brand promotion. Każdy kąt to potencjalna treść.</p>
+            </div>
+            <div class="service-card">
+              <span class="card-num">04</span>
+              <h4>Inicjatywy<br><em>CSR</em></h4>
+              <p>Team-building połączony z wolontariatem, naturą i odpowiedzialnością. Sens w każdym detalu.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
   </div>
 </section>
 
@@ -530,51 +534,6 @@
     <a class="modal-calendly-btn" href="https://calendly.com" target="_blank">Otwórz kalendarz → Calendly</a>
     <p class="modal-alt">Wolisz e-mail? Napisz na <a href="mailto:hello@episodestudio.pl">hello@episodestudio.pl</a></p>
   </div>
-</div>
-
-<div class="services-accordion">
-  
-  <!-- Usługa 01 -->
-  <div class="service-item is-mint">
-    <div class="service-banner">
-      <div class="service-content">
-        <h3 class="service-title"><strong>Team-building</strong> z programem</h3>
-        <span class="service-divider"></span>
-        <p class="service-description">Autorskie scenariusze, które redefiniują pojęcie integracji.</p>
-      </div>
-      <a href="#" class="service-cta">
-        Odkryj 
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z" fill="currentColor"/>
-        </svg>
-      </a>
-    </div>
-    <div class="service-badge">
-      <!-- Twoja ikona / SVG (np. koło ze zrzutu ekranu) -->
-      <div class="badge-icon">01</div>
-    </div>
-  </div>
-
-  <!-- Usługa 02 -->
-  <div class="service-item is-yellow">
-    <div class="service-banner">
-      <div class="service-content">
-        <h3 class="service-title"><strong>Off-sity</strong> dla zarządów</h3>
-        <span class="service-divider"></span>
-        <p class="service-description">Kameralne wyjazdy strategiczne i luksusowy odpoczynek.</p>
-      </div>
-      <a href="#" class="service-cta">
-        Odkryj 
-        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z" fill="currentColor"/>
-        </svg>
-      </a>
-    </div>
-    <div class="service-badge">
-      <div class="badge-icon">www.</div>
-    </div>
-  </div>
-
 </div>
 
 <!-- Skrypt — na końcu body dla szybszego ładowania -->

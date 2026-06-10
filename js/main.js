@@ -23,18 +23,20 @@ function initNav() {
 
 
 /* ──────────────────────────────────────────
-   2. SERVICES TABS
+   2. SERVICES ACCORDION
    ────────────────────────────────────────── */
 
-function switchTab(panelId, clickedBtn) {
-  document.querySelectorAll('.services-panel').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('panel-' + panelId)?.classList.add('active');
-  clickedBtn.classList.add('active');
+function toggleAccordion(id) {
+  const item = document.getElementById(id);
+  if (!item) return;
+  const isOpen = item.classList.contains('is-open');
+  // Zamknij wszystkie
+  document.querySelectorAll('.service-item').forEach(el => el.classList.remove('is-open'));
+  // Otwórz kliknięty (jeśli nie był otwarty)
+  if (!isOpen) item.classList.add('is-open');
 }
 
-// Eksportujemy globalnie bo jest wywoływana z atrybutu onclick w HTML
-window.switchTab = switchTab;
+window.toggleAccordion = toggleAccordion;
 
 
 /* ──────────────────────────────────────────
@@ -309,31 +311,12 @@ function initHeroRotation() {
 
 
 /* ──────────────────────────────────────────
-   9. PILL ACCORDION
-   ────────────────────────────────────────── */
-
-function initPillAccordion() {
-  const pills = document.querySelectorAll('.pill-row');
-  if (!pills.length) return;
-
-  pills.forEach(pill => {
-    pill.addEventListener('click', () => {
-      if (pill.classList.contains('active')) return;
-      pills.forEach(p => p.classList.remove('active'));
-      pill.classList.add('active');
-    });
-  });
-}
-
-
-/* ──────────────────────────────────────────
    INIT — uruchomienie wszystkich modułów
    ────────────────────────────────────────── */
 
 document.addEventListener('DOMContentLoaded', () => {
   initThemeToggle();
   initHeroRotation();
-  initPillAccordion();
   initNav();
   initModal();
   initScrollReveal();
