@@ -12,27 +12,36 @@
   <link rel="stylesheet" href="css/01-tokens.css">     <link rel="stylesheet" href="css/02-base.css">       <link rel="stylesheet" href="css/03-animations.css"> <link rel="stylesheet" href="css/04-components.css"> </head>
 <body>
 
-<nav>
+<nav class="nav-main-container">
   <a class="nav-logo" href="#">Episode Studio</a>
-  <ul class="nav-links">
-    <li><a href="#services">Oferta</a></li>
-    <li><a href="#process">Proces</a></li>
-    <li><a href="#about">O nas</a></li>
-    <li><a href="#contact">Kontakt</a></li>
-  </ul>
-  <div class="nav-actions">
-    <button class="theme-toggle" id="theme-toggle" aria-label="Przełącz motyw" title="Przełącz jasny / ciemny motyw">
-      <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/>
-        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-        <line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/>
-        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-      </svg>
-      <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-      </svg>
-    </button>
-    <a class="nav-cta" href="#" onclick="openModal(); return false;">Umów rozmowę</a>
+
+  <div class="nav-menu-capsule">
+    
+    <ul class="nav-links">
+      <li><a href="#services">Oferta</a></li>
+      <li><a href="#process">Proces</a></li>
+      <li><a href="#about">O nas</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="theme-toggle" id="theme-toggle" aria-label="Przełącz motyw" title="Przełącz jasny / ciemny motyw">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      
+      <a class="nav-cta" href="#" onclick="openModal(); return false;">
+        <span class="nav-cta-arrow">→</span>
+        <span>Umów rozmowę</span>
+      </a>
+    </div>
+
   </div>
 </nav>
 
@@ -60,23 +69,20 @@
       <div class="hero-heading-slot" id="hero-heading-slot">
         <div class="hero-heading-track" id="hero-heading-track">
           <h1 class="hero-h1" id="hero-h0">Każde zdarzenie<br>ma <em>swój moment.</em></h1>
-          <h1 class="hero-h1" id="hero-h1">Każda firma<br>zasługuje na<br><em>własną historię.</em></h1>
+          <h1 class="hero-h1" id="hero-h1">Każda wizja zasługuje<br> na własną <em>historię.</em></h1>
         </div>
       </div>
     </div>
 
     <div class="hero-content-bottom">
-      <p class="hero-sub">Dla firm, które chcą więcej niż imprezy. Dla par, które chcą więcej niż organizatora.</p>
-      <p class="hero-sub hero-sub--bold">Boutique Event Agency: team-building, off-site, ceremonie, aktywacje marek.</p>
+      <p class="hero-sub">Boutique Event Agency: team-building, off-site, ceremonie, aktywacje marek.</p>
+      <p class="hero-sub hero-sub--bold">Dla firm, które chcą więcej niż imprezy. Dla par, które chcą więcej niż organizatora.</p>
     </div>
 
   </div>
 
   <span class="hero-vertical-label">Episode Studio · 2026</span>
 </section>
-
-
-
 
 <section class="intro" id="intro">
   <div class="container">
@@ -111,164 +117,141 @@
   </div>
 </section>
 
-
 <section class="services" id="services">
   <div class="container">
 
     <div class="services-header reveal">
       <div>
         <p class="section-label">Oferta</p>
-        <h2 class="section-h2">Trzy ścieżki,<br><em>jeden standard.</em></h2>
+        <h2 class="section-h2">Wybrane ścieżki,<br><em>jeden standard.</em></h2>
       </div>
-      <p class="section-lead">Niezależnie czy przychodzisz z ramienia firmy, jako para czy jako marka — dostajecie ten sam poziom uwagi i zaangażowania.</p>
+      <p class="section-lead">Niezależnie od skali wyzwania — każda kategoria to zupełnie inne podejście projektowe, dopasowane do Twoich celów.</p>
     </div>
 
-    <div class="services-accordion reveal">
+    <!-- MODERN SERVICES ACCORDION COMPONENT BASED ON IMAGE_112D97.PNG -->
+    <div class="services-modern-accordion">
 
-      <div class="service-item is-open" id="acc-corporate">
-        <div class="service-banner" onclick="toggleAccordion('acc-corporate')">
-          <div class="service-meta">
-            <span class="service-num">01</span>
-            <span class="service-tag">B2B</span>
+      <!-- ==========================================
+           01. CORPORATE: STRATEGIA & ZESPÓŁ
+           ========================================== -->
+      <div class="modern-acc-group" id="group-corporate-strategy">
+        <!-- MEGA KAPSUŁA (ZAKŁADKA / TRIGGER) -->
+        <div class="mega-capsule is-active" onclick="toggleModernTab('group-corporate-strategy')">
+          <div class="capsule-icon-zone">
+            <div class="capsule-circle-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/></svg>
+            </div>
           </div>
-          <h3 class="service-title">Corporate <em>Episodes</em></h3>
-          <span class="service-divider"></span>
-          <p class="service-description">Eventy dla firm, które traktują doświadczenie poważnie.</p>
-          <div class="service-spacer"></div>
-          <button class="service-cta" aria-label="Rozwiń ofertę Corporate">
-            <svg class="cta-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z" fill="currentColor"/></svg>
+          <div class="capsule-content-zone">
+            <h3 class="capsule-title">Corporate: <span>Strategia & Zespół</span></h3>
+            <span class="capsule-v-divider"></span>
+            <p class="capsule-mini-desc">Immersyjny team-building i strategiczne wyjazdy off-site dla liderów.</p>
+          </div>
+          <button class="capsule-action-btn" aria-label="Zobacz szczegóły">
+            <span class="btn-label">Découvrir</span>
+            <svg class="btn-arrow" width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z" fill="currentColor"/></svg>
           </button>
         </div>
-        <div class="service-body">
+
+        <!-- USŁUGI UKRYTE / POKAZYWANE POD KAPSUŁĄ -->
+        <div class="modern-acc-body">
           <div class="service-grid">
             <div class="service-card">
               <span class="card-num">01</span>
-              <h4>Team-building<br><em>z programem</em></h4>
-              <p>Survival, kulinarnie, city quest, sport — nie impreza, lecz doświadczenie, które realnie łączy zespół.</p>
+              <h4>Immersyjny<br><em>team-building</em></h4>
+              <p>Autorskie scenariusze integracyjne oparte na storytellingu i doświadczeniu zmysłowym, które realnie zbliżają zespoły.</p>
             </div>
             <div class="service-card">
               <span class="card-num">02</span>
               <h4>Off-site<br><em>dla zarządów</em></h4>
-              <p>Kameralne wyjazdy łączące pracę z luksusowym odpoczynkiem. Pełna dyskrecja i perfekcyjna logistyka.</p>
+              <p>Kameralne, strategiczne wyjazdy łączące dyskusje na najwyższym szczeblu z luksusowym odpoczynkiem i pełną dyskrecją.</p>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           02. BRAND: WIZERUNEK & PRESTIŻ
+           ========================================== -->
+      <div class="modern-acc-group" id="group-corporate-brand">
+        <!-- MEGA KAPSUŁA (ZAKŁADKA / TRIGGER) -->
+        <div class="mega-capsule" onclick="toggleModernTab('group-corporate-brand')">
+          <div class="capsule-icon-zone">
+            <div class="capsule-circle-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 22 8.5 22 15.5 12 22 2 15.5 2 8.5 12 2"/></svg>
+            </div>
+          </div>
+          <div class="capsule-content-zone">
+            <h3 class="capsule-title">Brand: <span>Wizerunek & Prestiż</span></h3>
+            <span class="capsule-v-divider"></span>
+            <p class="capsule-mini-desc">Aktywacje marek, premiery produktów i wyjazdy incentive premium.</p>
+          </div>
+          <button class="capsule-action-btn" aria-label="Zobacz szczegóły">
+            <span class="btn-label">Découvrir</span>
+            <svg class="btn-arrow" width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z" fill="currentColor"/></svg>
+          </button>
+        </div>
+
+        <!-- USŁUGI UKRYTE / POKAZYWANE POD KAPSUŁĄ -->
+        <div class="modern-acc-body">
+          <div class="service-grid">
             <div class="service-card">
               <span class="card-num">03</span>
               <h4>Brand<br><em>activations</em></h4>
-              <p>Premiery produktów i wydarzenia w nieoczywistych przestrzeniach. Wartości marki w języku zmysłów.</p>
+              <p>Premiery produktów oraz wydarzenia wizerunkowe realizowane w nieoczywistych przestrzeniach galeryjnych i architektonicznych.</p>
             </div>
             <div class="service-card">
               <span class="card-num">04</span>
-              <h4>Employer<br><em>branding</em></h4>
-              <p>Wydarzenia, które materializują kulturę organizacji. Pracownicy jako ambasadorzy marki.</p>
-            </div>
-            <div class="service-card">
-              <span class="card-num">05</span>
-              <h4>Wyjazdy dla<br><em>top klientów</em></h4>
-              <p>Zagraniczne tripy dla managementu lub kluczowych klientów. Dyskrecja na każdym etapie.</p>
-            </div>
-            <div class="service-card">
-              <span class="card-num">06</span>
-              <h4>Eventy<br><em>CSR i ESG</em></h4>
-              <p>Integracja z realnym wsparciem społeczności i ekologii. Odpowiedzialność biznesowa w namacalnej formie.</p>
+              <h4>Wyjazdy<br><em>incentive premium</em></h4>
+              <p>Szyte na miarę podróże doświadczalne dla kluczowych partnerów biznesowych i kadry zarządzającej. Ekskluzywne destynacje.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="service-item" id="acc-private">
-        <div class="service-banner" onclick="toggleAccordion('acc-private')">
-          <div class="service-meta">
-            <span class="service-num">02</span>
-            <span class="service-tag">B2C</span>
+      <!-- ==========================================
+           03. PRIVATE: CELEBRACJE & HISTORIE
+           ========================================== -->
+      <div class="modern-acc-group" id="group-private-events">
+        <!-- MEGA KAPSUŁA (ZAKŁADKA / TRIGGER) -->
+        <div class="mega-capsule" onclick="toggleModernTab('group-private-events')">
+          <div class="capsule-icon-zone">
+            <div class="capsule-circle-icon">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
           </div>
-          <h3 class="service-title">Private <em>Episodes</em></h3>
-          <span class="service-divider"></span>
-          <p class="service-description">Ceremonie i uroczystości, gdzie każdy detal ma znaczenie.</p>
-          <div class="service-spacer"></div>
-          <button class="service-cta" aria-label="Rozwiń ofertę Private">
-            <svg class="cta-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z" fill="currentColor"/></svg>
+          <div class="capsule-content-zone">
+            <h3 class="capsule-title">Private: <span>Sztuka Celebracji</span></h3>
+            <span class="capsule-v-divider"></span>
+            <p class="capsule-mini-desc">Kameralne śluby o radykalnej estetyce, jubileusze i wydarzenia niszowe.</p>
+          </div>
+          <button class="capsule-action-btn" aria-label="Zobacz szczegóły">
+            <span class="btn-label">Découvrir</span>
+            <svg class="btn-arrow" width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z" fill="currentColor"/></svg>
           </button>
         </div>
-        <div class="service-body">
+
+        <!-- USŁUGI UKRYTE / POKAZYWANE POD KAPSUŁĄ -->
+        <div class="modern-acc-body">
           <div class="service-grid">
             <div class="service-card">
-              <span class="card-num">01</span>
-              <h4>Micro-wedding<br><em>i ceremonie</em></h4>
-              <p>Mniej gości, więcej uwagi na każdy detal. Plener lub wyjątkowa przestrzeń — zawsze z naciskiem na estetykę.</p>
-            </div>
-            <div class="service-card">
-              <span class="card-num">02</span>
-              <h4>Zaręczyny<br><em>i propozycje</em></h4>
-              <p>Gotowe scenariusze lub projekty od zera — kameralne i spektakularne. Moment na całe życie.</p>
-            </div>
-            <div class="service-card">
-              <span class="card-num">03</span>
-              <h4>Urodziny<br><em>dla dorosłych</em></h4>
-              <p>Premium, retro, sportowe, klubowe — temat dopasowany do osobowości, nie do szablonu.</p>
-            </div>
-            <div class="service-card">
-              <span class="card-num">04</span>
-              <h4>Eventy<br><em>outdoorowe</em></h4>
-              <p>Prywatne pikniki, kolacje w ogrodzie, garden parties. Natura jako scenografia.</p>
-            </div>
-            <div class="service-card">
               <span class="card-num">05</span>
-              <h4>Baby shower<br><em>i rocznice</em></h4>
-              <p>Eventy rodzinne z wysokim poziomem personalizacji — baby shower, gender reveal, rocznice.</p>
+              <h4>Micro-weddings<br><em>& ceremonie</em></h4>
+              <p>Kameralne śluby z naciskiem na radykalną estetykę, unikalne lokacje i głęboką personalizację każdego momentu.</p>
             </div>
             <div class="service-card">
               <span class="card-num">06</span>
-              <h4>Once-in-a-lifetime<br><em>experiences</em></h4>
-              <p>Eventy zaprojektowane wokół jednej emocji lub osobistej historii klienta.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="service-item" id="acc-content">
-        <div class="service-banner" onclick="toggleAccordion('acc-content')">
-          <div class="service-meta">
-            <span class="service-num">03</span>
-            <span class="service-tag">Niche</span>
-          </div>
-          <h3 class="service-title">Content <em>& CSR</em></h3>
-          <span class="service-divider"></span>
-          <p class="service-description">Eventy z misją i treścią, zaprojektowane z myślą o przekazie.</p>
-          <div class="service-spacer"></div>
-          <button class="service-cta" aria-label="Rozwiń ofertę Content & CSR">
-            <svg class="cta-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.175 9H0V7H12.175L6.575 1.4L8 0L16 8L8 16L6.575 14.6L12.175 9Z" fill="currentColor"/></svg>
-          </button>
-        </div>
-        <div class="service-body">
-          <div class="service-grid">
-            <div class="service-card">
-              <span class="card-num">01</span>
-              <h4>Eventy<br><em>społecznościowe</em></h4>
-              <p>Dla niszowych społeczności — motorsport, wino, design thinking, medytacja, outdoor. Wspólna pasja jako spoiwo.</p>
-            </div>
-            <div class="service-card">
-              <span class="card-num">02</span>
-              <h4>Warsztaty<br><em>experiential</em></h4>
-              <p>Sesje łączące naukę z przeżyciem — leadership, storytelling, kulinarnie, kreatywność w działaniu.</p>
-            </div>
-            <div class="service-card">
-              <span class="card-num">03</span>
-              <h4>Content-first<br><em>events</em></h4>
-              <p>Zaprojektowane z myślą o social media i brand promotion. Każdy kąt to potencjalna treść.</p>
-            </div>
-            <div class="service-card">
-              <span class="card-num">04</span>
-              <h4>Inicjatywy<br><em>CSR</em></h4>
-              <p>Team-building połączony z wolontariatem, naturą i odpowiedzialnością. Sens w każdym detalu.</p>
+              <h4>Jubileusze<br><em>i celebracje</em></h4>
+              <p>Prywatne wydarzenia rocznicowe oraz urodziny premium, projektowane wokół unikalnego motywu przewodniego i pasji.</p>
             </div>
           </div>
         </div>
       </div>
 
     </div>
+
   </div>
 </section>
-
 
 <section class="process" id="process">
   <div class="container">
@@ -348,7 +331,6 @@
   </div>
 </section>
 
-
 <section class="about" id="about">
   <div class="container">
     <div class="about-inner">
@@ -375,7 +357,6 @@
   </div>
 </section>
 
-
 <section class="image-section" id="image-parallax">
   <div class="image-section-bg" id="parallax-bg"></div>
   <div class="image-section-overlay"></div>
@@ -386,7 +367,6 @@
   </div>
   <span class="image-credit">Foto: <a href="https://unsplash.com" target="_blank">Unsplash</a></span>
 </section>
-
 
 <section class="contact-section" id="contact">
   <div class="container">
@@ -474,7 +454,6 @@
     </div>
   </div>
 </section>
-
 
 <footer>
   <span class="footer-logo">Episode Studio</span>

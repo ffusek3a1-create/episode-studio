@@ -186,13 +186,13 @@ function initHeroRotation() {
   const h1      = document.getElementById('hero-h1');
   if (!hero || !track || !h0 || !h1) return;
 
+  // AKTUALIZACJA: Zmiana z Warszawy na Wrocław w tablicy konfiguracyjnej skryptu
   const slides = [
-    { eyebrow: 'Boutique Event Agency · Warszawa' },
-    { eyebrow: 'Firmy i zespoły premium' },
+    { eyebrow: 'Boutique Event Agency · Wrocław' },
+    { eyebrow: 'Dla marek, zespołów i wymagających osobowości' },
   ];
 
   // WYMUSZENIE UKŁADU ASYMETRYCZNEGO W JAVASCRIPT
-  // Kontener nadrzędny staje się pozycją odniesienia o stałej, bezpiecznej wysokości
   track.style.setProperty('position', 'relative', 'important');
   track.style.setProperty('display', 'block', 'important');
 
@@ -200,7 +200,7 @@ function initHeroRotation() {
   h0.style.setProperty('animation', 'none', 'important');
   h1.style.setProperty('animation', 'none', 'important');
 
-  // NAGŁÓWEK 1 (#hero-h0): Zostaje po lewej stronie, tak jak stał pierwotnie
+  // NAGŁÓWEK 1 (#hero-h0): Po lewej stronie
   h0.style.setProperty('position', 'relative', 'important');
   h0.style.setProperty('top', '0', 'important');
   h0.style.setProperty('left', '0', 'important');
@@ -208,11 +208,11 @@ function initHeroRotation() {
   h0.style.setProperty('margin', '0', 'important');
   h0.style.setProperty('width', '100%', 'important');
 
-  // NAGŁÓWEK 2 (#hero-h1): Przeniesiony w prawy dolny róg kontenera track
+  // NAGŁÓWEK 2 (#hero-h1): W prawym dolnym rogu kontenera track
   h1.style.setProperty('position', 'absolute', 'important');
   h1.style.setProperty('bottom', '0', 'important');
   h1.style.setProperty('right', '0', 'important');
-  h1.style.setProperty('text-align', 'right', 'important'); // Tekst wyrównany do prawej strony
+  h1.style.setProperty('text-align', 'right', 'important');
   h1.style.setProperty('margin', '0', 'important');
   h1.style.setProperty('width', 'auto', 'important');
   
@@ -220,12 +220,10 @@ function initHeroRotation() {
   h1.style.setProperty('opacity', '0', 'important');
   h1.style.setProperty('visibility', 'hidden', 'important');
 
-  // Funkcja obliczająca przestrzeń, aby wysoki nagłówek po prawej nie uciął się ani nie najechał na przyciski poniżej
+  // Funkcja obliczająca przestrzeń dla asymetrycznego układu
   function adjustTrackHeight() {
-    // Ponieważ h1 ma trzy linijki i jest po prawej na dole, kontener musi mieć odpowiedni zapas wysokości
     const baseHeight = h0.scrollHeight;
     const secondHeight = h1.scrollHeight;
-    // Dajemy bezpieczny margines wysokości (w pionie nagłówki zmieszczą się obok siebie / schodkowo)
     track.style.height = (baseHeight + secondHeight * 0.4) + 'px';
   }
 
@@ -236,25 +234,21 @@ function initHeroRotation() {
   function handleHeroScroll() {
     const scrollY = window.scrollY;
     
-    // Dystans przewijania (w pikselach), na którym zachodzi pełna animacja
     const transitionDistance = 280; 
     let progress = Math.min(Math.max(scrollY / transitionDistance, 0), 1);
-
-    // Amplituda delikatnego ruchu tekstu (w pikselach)
     const moveDistance = 25; 
 
-    // REAKCJA PIERWSZEGO NAGŁÓWKA (#hero-h0) — Zanika i przesuwa się w lewo/górę
+    // REAKCJA PIERWSZEGO NAGŁÓWKA (#hero-h0) — Zanika
     h0.style.setProperty('opacity', (1 - progress).toFixed(3), 'important');
     h0.style.transform = `translate(${-progress * (moveDistance / 2)}px, ${-progress * moveDistance}px)`;
     
-    // Gdy całkowicie przewiniemy dystans, chowamy go systemowo ze struktury widoku
     if (progress >= 0.98) {
       h0.style.setProperty('visibility', 'hidden', 'important');
     } else {
       h0.style.setProperty('visibility', 'visible', 'important');
     }
 
-    // REAKCJA DRUGIEGO NAGŁÓWKA (#hero-h1) — Pojawia się w prawym dolnym rogu i unosi z dołu
+    // REAKCJA DRUGIEGO NAGŁÓWKA (#hero-h1) — Pojawia się w prawym dolnym rogu
     if (progress > 0.02) {
       h1.style.setProperty('visibility', 'visible', 'important');
       h1.style.setProperty('opacity', progress.toFixed(3), 'important');
@@ -264,7 +258,7 @@ function initHeroRotation() {
     }
     h1.style.transform = `translateY(${(1 - progress) * moveDistance}px)`;
 
-    // Płynna, synchroniczna wymiana tekstu nadtytułu (eyebrow)
+    // Płynna, synchroniczna wymiana tekstu nadtytułu (eyebrow) z uwzględnieniem Wrocławia
     if (eyebrow) {
       if (progress < 0.5) {
         eyebrow.textContent = slides[0].eyebrow;
@@ -278,11 +272,9 @@ function initHeroRotation() {
     hero.classList.toggle('is-active', progress > 0.5);
   }
 
-  // Włączenie nasłuchiwania przewijania i natychmiastowa inicjalizacja stanu zerowego
   window.addEventListener('scroll', handleHeroScroll, { passive: true });
   handleHeroScroll();
   
-  // Ostateczna korekta wysokości po pełnym załadowaniu fontów na stronie
   window.addEventListener('load', adjustTrackHeight);
 }
 
