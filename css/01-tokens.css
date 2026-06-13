@@ -48,10 +48,10 @@
   --duration-slow:   0.8s;
   --duration-reveal: 0.9s;
 
-  /* Border radius */
-  --radius-sm:  2px;
+  /* Border radius — system premium: jeden rozmiar */
+  --radius-sm:  4px;
   --radius-md:  4px;
-  --radius-lg:  12px;
+  --radius-lg:  4px;
 }
 
 /* ── 3. MAPOWANIE — aliasy zdefiniowane bezpośrednio w .dark / .light (material-theme/*.css) ── */

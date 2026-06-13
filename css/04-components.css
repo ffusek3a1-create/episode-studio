@@ -52,7 +52,7 @@ nav {
   background: var(--color-surface); /* Używa Twojego kontenera o niższym priorytecie */
   border: 1px solid var(--color-border); /* Subtelna ramka z Twojego systemu */
   padding: 0.35rem;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   gap: 1.5rem;
 }
 
@@ -74,7 +74,7 @@ nav {
   color: var(--color-muted); /* Przygaszony tekst z Twojej palety */
   text-decoration: none;
   padding: 0.55rem 1.1rem;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   background: var(--color-surface2); /* Kafelki delikatnie jaśniejsze (Twój główny surface) */
   transition: background var(--duration-fast, 0.2s) ease, color var(--duration-fast, 0.2s) ease;
 }
@@ -94,7 +94,7 @@ nav {
   color: var(--color-on-primary) !important; /* Ciemnozielony tekst prosto z Twojego tokenu */
   background: var(--color-primary); /* Twój piękny, główny jasny zielony miętowy */
   padding: 0.55rem 1.25rem;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   text-decoration: none;
   transition: background var(--duration-fast, 0.2s) ease, transform var(--duration-fast, 0.2s) ease;
 }
@@ -158,7 +158,7 @@ nav {
 .hero-pill-bg {
   position:        absolute;
   inset:           0;
-  border-radius:   120px;
+  border-radius: var(--radius-md);
   background:      rgba(157, 212, 158, 0.08);
   border:          0.5px solid rgba(157, 212, 158, 0.2);
   transition:      background 0.8s ease,
@@ -183,7 +183,7 @@ nav {
   transform:       translateX(-50%);
   width:           52px;
   height:          52px;
-  border-radius:   50%;
+  border-radius:   var(--radius-md);
   background:      var(--color-bg);
   border:          0.5px solid var(--color-border2);
   display:         flex;
@@ -197,7 +197,7 @@ nav {
 .hero.is-active .hero-pill-bg {
   background:    rgba(157, 212, 158, 0.18);
   border-color:  rgba(157, 212, 158, 0.5);
-  border-radius: 48px;
+  border-radius: var(--radius-md);
   transform:     scale(0.88);
 }
 
@@ -330,7 +330,7 @@ nav {
 }
 
 .pill-row {
-  border-radius:  999px;
+  border-radius:  var(--radius-md);
   border:         1px solid var(--color-border);
   background:     var(--color-surface);
   cursor:         pointer;
@@ -454,7 +454,7 @@ nav {
 .pill-cta-circle {
   width:           38px;
   height:          38px;
-  border-radius:   50%;
+  border-radius:   var(--radius-md);
   background:      #111;
   display:         flex;
   align-items:     center;
@@ -516,6 +516,10 @@ nav {
    SERVICES
    ────────────────────────────────────────── */
 
+/* ──────────────────────────────────────────
+   SERVICES — CAPSULE ACCORDION
+   ────────────────────────────────────────── */
+
 .services { padding: var(--section-pad); }
 
 .services-header {
@@ -526,193 +530,213 @@ nav {
   margin-bottom:         var(--space-xl);
 }
 
-/* ── ACCORDION ── */
-.services-accordion {
+/* ── Lista kapsułek ── */
+.acc-list {
   display:        flex;
   flex-direction: column;
   gap:            8px;
 }
 
-.service-item {
-  border-radius: 999px;
+/* ── Pojedynczy element ── */
+.acc-item {
+  border-radius: var(--radius-md);
   border:        1px solid var(--color-border);
   background:    var(--color-surface);
   overflow:      hidden;
-  transition:    border-color 0.35s ease, border-radius 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+  transition:    border-color   0.4s ease;
 }
 
-.service-item.is-open {
-  border-radius: 2rem;
+.acc-item.is-open {
+  border-radius: var(--radius-md);
   border-color:  var(--color-primary);
 }
 
-/* Banner — zawsze widoczny pasek */
-.service-banner {
+/* ── Kapsułka — pasek ── */
+.acc-capsule {
   display:     flex;
   align-items: center;
-  padding:     0 1.75rem;
+  padding:     0 1.5rem 0 1.25rem;
   height:      72px;
-  gap:         0;
   cursor:      pointer;
   user-select: none;
+  gap:         0;
 }
 
-.service-meta {
-  display:     flex;
-  align-items: center;
-  gap:         0.6rem;
-  flex-shrink: 0;
+/* Badge: numer + tag */
+.acc-badge {
+  display:      flex;
+  align-items:  center;
+  gap:          0.5rem;
+  flex-shrink:  0;
   margin-right: 1.25rem;
 }
 
-.service-num {
+.acc-num {
   font-family:    var(--font-sans);
   font-size:      10px;
   font-weight:    500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   color:          var(--color-muted);
   transition:     color 0.3s ease;
 }
 
-.service-tag {
+.acc-tag {
   font-family:    var(--font-sans);
-  font-size:      9.5px;
+  font-size:      9px;
   font-weight:    500;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color:          var(--color-muted);
   border:         0.5px solid var(--color-border2);
-  border-radius:  999px;
+  border-radius:  var(--radius-md);
   padding:        2px 8px;
   transition:     color 0.3s ease, border-color 0.3s ease;
 }
 
-.service-item.is-open .service-num,
-.service-item.is-open .service-tag {
+.acc-item.is-open .acc-num,
+.acc-item.is-open .acc-tag {
   color:        var(--color-primary);
   border-color: rgba(157, 212, 158, 0.3);
 }
 
-.service-title {
+/* Tytuł */
+.acc-title {
   font-family:  var(--font-serif);
   font-size:    1.5rem;
   font-weight:  300;
   color:        var(--color-text);
   white-space:  nowrap;
-  transition:   color 0.3s ease;
   flex-shrink:  0;
+  transition:   color 0.3s ease;
 }
 
-.service-title em {
+.acc-title em {
   font-style: italic;
   color:      var(--color-primary);
-  transition: color 0.3s ease;
 }
 
-.service-divider {
-  display:      block;
-  height:       28px;
-  border-left:  0.5px solid var(--color-border2);
-  margin:       0 1.5rem;
-  flex-shrink:  0;
-  opacity:      0;
-  transition:   opacity 0.3s ease;
+/* Separator pionowy */
+.acc-divider {
+  display:     block;
+  width:       0.5px;
+  height:      28px;
+  background:  var(--color-border2);
+  flex-shrink: 0;
+  margin:      0 1.5rem;
+  opacity:     0;
+  transition:  opacity 0.35s ease;
 }
 
-.service-item.is-open .service-divider {
-  opacity: 1;
-  transition: opacity 0.35s ease 0.15s;
+.acc-item.is-open .acc-divider {
+  opacity:    1;
+  transition: opacity 0.4s ease 0.2s;
 }
 
-.service-description {
+/* Opis */
+.acc-desc {
   font-family:    var(--font-sans);
   font-size:      12px;
   font-weight:    300;
   color:          var(--color-muted);
-  line-height:    1.6;
-  flex-shrink:    0;
+  line-height:    1.65;
   max-width:      260px;
+  flex-shrink:    0;
   opacity:        0;
-  transform:      translateY(4px);
+  transform:      translateY(5px);
   pointer-events: none;
   transition:     opacity 0.25s ease, transform 0.25s ease;
 }
 
-.service-item.is-open .service-description {
+.acc-item.is-open .acc-desc {
   opacity:    1;
   transform:  translateY(0);
-  transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+  transition: opacity 0.4s ease 0.25s, transform 0.4s ease 0.25s;
 }
 
-.service-spacer { flex: 1; }
+.acc-spacer { flex: 1; }
 
-.service-cta {
-  display:          flex;
-  align-items:      center;
-  justify-content:  center;
-  width:            38px;
-  height:           38px;
-  border-radius:    50%;
-  border:           none;
-  background:       var(--color-surface2);
-  color:            var(--color-muted);
-  cursor:           pointer;
-  flex-shrink:      0;
-  transition:       background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+/* CTA po prawej */
+.acc-cta {
+  display:        flex;
+  align-items:    center;
+  gap:            0.65rem;
+  flex-shrink:    0;
+  opacity:        0;
+  transform:      translateX(-8px);
+  pointer-events: none;
+  transition:     opacity 0.3s ease, transform 0.3s ease;
 }
 
-.service-item.is-open .service-cta {
-  background: var(--color-primary);
-  color:      var(--color-bg);
+.acc-item.is-open .acc-cta {
+  opacity:        1;
+  transform:      translateX(0);
+  pointer-events: auto;
+  transition:     opacity 0.4s ease 0.32s, transform 0.4s ease 0.32s;
 }
 
-.cta-arrow {
-  transition: transform 0.4s ease;
+.acc-cta-label {
+  font-family:    var(--font-sans);
+  font-size:      11px;
+  font-weight:    400;
+  letter-spacing: 0.06em;
+  color:          var(--color-muted);
+  white-space:    nowrap;
 }
 
-.service-item.is-open .cta-arrow {
-  transform: rotate(90deg);
+.acc-cta-btn {
+  width:           36px;
+  height:          36px;
+  border-radius:   var(--radius-md);
+  background:      var(--color-primary);
+  color:           var(--color-bg);
+  display:         flex;
+  align-items:     center;
+  justify-content: center;
+  flex-shrink:     0;
+  transition:      transform 0.2s ease;
 }
 
-/* Body — rozwijana siatka kart */
-.service-body {
-  max-height:  0;
-  overflow:    hidden;
-  transition:  max-height 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+.acc-item.is-open .acc-cta-btn:hover {
+  transform: scale(1.08);
 }
 
-.service-item.is-open .service-body {
-  max-height: 600px;
+/* ── Body — rozwijana siatka kart ── */
+.acc-body {
+  max-height: 0;
+  overflow:   hidden;
+  transition: max-height 0.6s cubic-bezier(0.76, 0, 0.24, 1);
 }
 
-.service-grid {
+.acc-item.is-open .acc-body {
+  max-height: 700px;
+}
+
+.acc-grid {
   display:               grid;
   grid-template-columns: repeat(3, 1fr);
   gap:                   1.5px;
   background:            var(--color-border);
   border-top:            1px solid var(--color-border);
-  margin:                0;
-  overflow:              hidden;
 }
 
-.service-card {
+.acc-card {
   background:  var(--color-bg);
   padding:     1.75rem;
   transition:  background var(--duration-base);
 }
 
-.service-card:hover { background: var(--color-surface); }
+.acc-card:hover { background: var(--color-surface); }
 
-.card-num {
+.acc-card-num {
   display:        block;
   font-family:    var(--font-serif);
   font-size:      0.75rem;
   letter-spacing: 0.1em;
-  color:          var(--color-muted);
+  color:          var(--color-border2);
   margin-bottom:  1rem;
 }
 
-.service-card h4 {
+.acc-card h4 {
   font-family:   var(--font-serif);
   font-size:     var(--text-h3);
   font-weight:   400;
@@ -721,9 +745,9 @@ nav {
   margin-bottom: 0.65rem;
 }
 
-.service-card h4 em { font-style: italic; color: var(--color-text); }
+.acc-card h4 em { font-style: italic; color: var(--color-text); }
 
-.service-card p {
+.acc-card p {
   font-family: var(--font-sans);
   font-size:   var(--text-small);
   font-weight: 300;
@@ -1332,7 +1356,7 @@ footer {
   color: var(--color-muted);
   width: 32px;
   height: 32px;
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1464,251 +1488,5 @@ html.light .icon-moon { display: block; }
   .footer-links {
     flex-direction: column;
     gap: var(--space-sm);
-  }
-}
-
-/* ──────────────────────────────────────────
-   MODERN ACCORDION / MEGA CAPSULES
-   ────────────────────────────────────────── */
-
-.modern-acc-group {
-  margin-bottom: 10px;
-}
-
-/* ── MEGA KAPSUŁA (TRIGGER) ── */
-.mega-capsule {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 1.75rem;
-  height: 72px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  cursor: pointer;
-  user-select: none;
-  transition: background 0.4s ease, border-color 0.4s ease, border-radius 0.45s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-/* Stan aktywny / otwarty (JS toggluje .is-active na .mega-capsule lub rodzicu) */
-.modern-acc-group:has(.modern-acc-body[style*="max-height"]) .mega-capsule, /* Awaryjnie dla JS operującego na stylach */
-.mega-capsule.is-active {
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-  border-radius: 2rem 2rem 0 0; /* Płynne przejście w prostokątny szczyt grupy */
-}
-
-/* ── STREFA IKONY ── */
-.capsule-icon-zone {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  margin-right: 1.25rem;
-}
-
-.capsule-circle-icon {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 0.5px solid var(--color-border2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-muted);
-  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
-}
-
-.mega-capsule.is-active .capsule-circle-icon {
-  color: var(--color-primary);
-  background: var(--color-bg);
-  border-color: rgba(157, 212, 158, 0.3);
-}
-
-/* ── STREFA TREŚCI ── */
-.capsule-content-zone {
-  display: flex;
-  align-items: center;
-  flex: 1;
-  gap: 0;
-}
-
-.capsule-title {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
-  font-weight: 300;
-  color: var(--color-text);
-  white-space: nowrap;
-  transition: color 0.3s ease;
-  flex-shrink: 0;
-  margin: 0;
-}
-
-.capsule-title span {
-  font-style: italic;
-  font-weight: 300;
-  color: var(--color-primary);
-  transition: color 0.3s ease;
-}
-
-.mega-capsule.is-active .capsule-title {
-  color: #111;
-}
-
-.mega-capsule.is-active .capsule-title span {
-  color: #111;
-}
-
-/* Pionowy separator linearny wewnątrz kapsuły */
-.capsule-v-divider {
-  display: block;
-  height: 28px;
-  border-left: 0.5px solid var(--color-border2);
-  margin: 0 1.5rem;
-  flex-shrink: 0;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.mega-capsule.is-active .capsule-v-divider {
-  opacity: 1;
-  border-left-color: rgba(0, 0, 0, 0.15);
-  transition: opacity 0.35s ease 0.15s;
-}
-
-/* Mini opis wewnątrz kapsuły */
-.capsule-mini-desc {
-  font-family: var(--font-sans);
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--color-muted);
-  line-height: 1.6;
-  flex-shrink: 0;
-  max-width: 280px;
-  margin: 0;
-  opacity: 0;
-  transform: translateY(4px);
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.mega-capsule.is-active .capsule-mini-desc {
-  opacity: 1;
-  color: rgba(0, 0, 0, 0.6);
-  transform: translateY(0);
-  transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
-}
-
-/* ── PRZYCISK AKCJI (DÉCOUVRIR) ── */
-.capsule-action-btn {
-  display: flex;
-  align-items: center;
-  gap: 0.65rem;
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  flex-shrink: 0;
-  color: var(--color-muted);
-  transition: color 0.3s ease;
-}
-
-.btn-label {
-  font-family: var(--font-sans);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  opacity: 0;
-  transform: translateX(-10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-.mega-capsule.is-active .btn-label {
-  opacity: 1;
-  color: rgba(0, 0, 0, 0.7);
-  transform: translateX(0);
-  transition: opacity 0.4s ease 0.33s, transform 0.4s ease 0.33s;
-}
-
-.btn-arrow {
-  width: 14px;
-  height: 14px;
-  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1), color 0.3s ease;
-}
-
-.mega-capsule.is-active .btn-arrow {
-  transform: rotate(90deg);
-  color: #111;
-}
-
-/* ── ROZWIJANY KONTENER (BODY) ── */
-.modern-acc-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.55s cubic-bezier(0.76, 0, 0.24, 1);
-}
-
-/* Gdy grupa dostaje klasę aktywności lub JS ustawi max-height */
-.modern-acc-group.is-open .modern-acc-body {
-  max-height: 600px; /* Bezpieczna wartość maksymalna dla animacji smooth-scroll */
-}
-
-/* Konstrukcja siatki pod spodem zamknięta w prostokątne ramy dolne */
-.modern-acc-body .service-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Dwie karty w rzędzie zgodnie z HTML */
-  gap: 1.5px;
-  background: var(--color-border);
-  border: 1px solid var(--color-border);
-  border-top: none;
-  border-radius: 0 0 2rem 2rem;
-  margin: 0;
-  overflow: hidden;
-}
-
-/* Stylizacja kart usług pasująca do struktury z sekcji Services */
-.modern-acc-body .service-card {
-  background: var(--color-bg);
-  padding: 1.75rem;
-  transition: background var(--duration-base);
-}
-
-.modern-acc-body .service-card:hover {
-  background: var(--color-surface);
-}
-
-/* Responsywność dla urządzeń mobilnych */
-@media (max-width: 900px) {
-  .mega-capsule {
-    height: auto;
-    padding: 1.25rem 1.5rem;
-    border-radius: 24px;
-  }
-  
-  .modern-acc-group:has(.modern-acc-body[style*="max-height"]) .mega-capsule,
-  .mega-capsule.is-active {
-    border-radius: 24px 24px 0 0;
-  }
-
-  .capsule-content-zone {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.25rem;
-  }
-
-  .capsule-v-divider {
-    display: none; /* Ukrywamy separator na małych ekranach */
-  }
-
-  .capsule-mini-desc {
-    opacity: 1;
-    transform: none;
-    max-width: 100%;
-    font-size: 11px;
-  }
-  
-  .modern-acc-body .service-grid {
-    grid-template-columns: 1fr; /* Jeden kafelek na pełną szerokość */
-    border-radius: 0 0 24px 24px;
   }
 }
