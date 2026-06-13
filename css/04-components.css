@@ -1466,3 +1466,249 @@ html.light .icon-moon { display: block; }
     gap: var(--space-sm);
   }
 }
+
+/* ──────────────────────────────────────────
+   MODERN ACCORDION / MEGA CAPSULES
+   ────────────────────────────────────────── */
+
+.modern-acc-group {
+  margin-bottom: 10px;
+}
+
+/* ── MEGA KAPSUŁA (TRIGGER) ── */
+.mega-capsule {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.75rem;
+  height: 72px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.4s ease, border-color 0.4s ease, border-radius 0.45s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Stan aktywny / otwarty (JS toggluje .is-active na .mega-capsule lub rodzicu) */
+.modern-acc-group:has(.modern-acc-body[style*="max-height"]) .mega-capsule, /* Awaryjnie dla JS operującego na stylach */
+.mega-capsule.is-active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  border-radius: 2rem 2rem 0 0; /* Płynne przejście w prostokątny szczyt grupy */
+}
+
+/* ── STREFA IKONY ── */
+.capsule-icon-zone {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin-right: 1.25rem;
+}
+
+.capsule-circle-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 0.5px solid var(--color-border2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.mega-capsule.is-active .capsule-circle-icon {
+  color: var(--color-primary);
+  background: var(--color-bg);
+  border-color: rgba(157, 212, 158, 0.3);
+}
+
+/* ── STREFA TREŚCI ── */
+.capsule-content-zone {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 0;
+}
+
+.capsule-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-text);
+  white-space: nowrap;
+  transition: color 0.3s ease;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.capsule-title span {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--color-primary);
+  transition: color 0.3s ease;
+}
+
+.mega-capsule.is-active .capsule-title {
+  color: #111;
+}
+
+.mega-capsule.is-active .capsule-title span {
+  color: #111;
+}
+
+/* Pionowy separator linearny wewnątrz kapsuły */
+.capsule-v-divider {
+  display: block;
+  height: 28px;
+  border-left: 0.5px solid var(--color-border2);
+  margin: 0 1.5rem;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mega-capsule.is-active .capsule-v-divider {
+  opacity: 1;
+  border-left-color: rgba(0, 0, 0, 0.15);
+  transition: opacity 0.35s ease 0.15s;
+}
+
+/* Mini opis wewnątrz kapsuły */
+.capsule-mini-desc {
+  font-family: var(--font-sans);
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--color-muted);
+  line-height: 1.6;
+  flex-shrink: 0;
+  max-width: 280px;
+  margin: 0;
+  opacity: 0;
+  transform: translateY(4px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.mega-capsule.is-active .capsule-mini-desc {
+  opacity: 1;
+  color: rgba(0, 0, 0, 0.6);
+  transform: translateY(0);
+  transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s;
+}
+
+/* ── PRZYCISK AKCJI (DÉCOUVRIR) ── */
+.capsule-action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  flex-shrink: 0;
+  color: var(--color-muted);
+  transition: color 0.3s ease;
+}
+
+.btn-label {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mega-capsule.is-active .btn-label {
+  opacity: 1;
+  color: rgba(0, 0, 0, 0.7);
+  transform: translateX(0);
+  transition: opacity 0.4s ease 0.33s, transform 0.4s ease 0.33s;
+}
+
+.btn-arrow {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.4s cubic-bezier(0.76, 0, 0.24, 1), color 0.3s ease;
+}
+
+.mega-capsule.is-active .btn-arrow {
+  transform: rotate(90deg);
+  color: #111;
+}
+
+/* ── ROZWIJANY KONTENER (BODY) ── */
+.modern-acc-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.55s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+/* Gdy grupa dostaje klasę aktywności lub JS ustawi max-height */
+.modern-acc-group.is-open .modern-acc-body {
+  max-height: 600px; /* Bezpieczna wartość maksymalna dla animacji smooth-scroll */
+}
+
+/* Konstrukcja siatki pod spodem zamknięta w prostokątne ramy dolne */
+.modern-acc-body .service-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Dwie karty w rzędzie zgodnie z HTML */
+  gap: 1.5px;
+  background: var(--color-border);
+  border: 1px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 2rem 2rem;
+  margin: 0;
+  overflow: hidden;
+}
+
+/* Stylizacja kart usług pasująca do struktury z sekcji Services */
+.modern-acc-body .service-card {
+  background: var(--color-bg);
+  padding: 1.75rem;
+  transition: background var(--duration-base);
+}
+
+.modern-acc-body .service-card:hover {
+  background: var(--color-surface);
+}
+
+/* Responsywność dla urządzeń mobilnych */
+@media (max-width: 900px) {
+  .mega-capsule {
+    height: auto;
+    padding: 1.25rem 1.5rem;
+    border-radius: 24px;
+  }
+  
+  .modern-acc-group:has(.modern-acc-body[style*="max-height"]) .mega-capsule,
+  .mega-capsule.is-active {
+    border-radius: 24px 24px 0 0;
+  }
+
+  .capsule-content-zone {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .capsule-v-divider {
+    display: none; /* Ukrywamy separator na małych ekranach */
+  }
+
+  .capsule-mini-desc {
+    opacity: 1;
+    transform: none;
+    max-width: 100%;
+    font-size: 11px;
+  }
+  
+  .modern-acc-body .service-grid {
+    grid-template-columns: 1fr; /* Jeden kafelek na pełną szerokość */
+    border-radius: 0 0 24px 24px;
+  }
+}

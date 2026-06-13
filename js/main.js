@@ -292,3 +292,43 @@ document.addEventListener('DOMContentLoaded', () => {
   initImageSection();
   initContactForm();
 });
+
+function toggleModernTab(groupId) {
+  // 1. Znajdź grupę, która została kliknięta
+  const targetGroup = document.getElementById(groupId);
+  if (!targetGroup) return;
+
+  const targetCapsule = targetGroup.querySelector('.mega-capsule');
+  const targetBody = targetGroup.querySelector('.modern-acc-body');
+
+  // Sprawdź, czy ta konkretna grupa jest już otwarta
+  const isAlreadyOpen = targetGroup.classList.contains('is-open');
+
+  // 2. ZAMKNIJ POZOSTAŁE GRUPY (Efekt klasycznego akordeonu)
+  // Jeśli wolisz, aby można było otworzyć kilka na raz, usuń całą poniższą pętlę forEach
+  document.querySelectorAll('.modern-acc-group').forEach(group => {
+    if (group !== targetGroup) {
+      group.classList.remove('is-open');
+      
+      const capsule = group.querySelector('.mega-capsule');
+      if (capsule) capsule.classList.remove('is-active');
+      
+      const body = group.querySelector('.modern-acc-body');
+      if (body) body.style.maxHeight = null;
+    }
+  });
+
+  // 3. OBSŁUGA KLIKNIĘTEJ GRUPY
+  if (isAlreadyOpen) {
+    // Jeśli była otwarta -> zamknij
+    targetGroup.classList.remove('is-open');
+    targetCapsule.classList.remove('is-active');
+    targetBody.style.maxHeight = null;
+  } else {
+    // Jeśli była zamknięta -> otwórz
+    targetGroup.classList.add('is-open');
+    targetCapsule.classList.add('is-active');
+    // Dynamiczne przypisanie wysokości scrollHeight dla płynnego CSS transition
+    targetBody.style.maxHeight = targetBody.scrollHeight + "px";
+  }
+}
