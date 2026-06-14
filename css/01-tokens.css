@@ -21,10 +21,10 @@
   --text-h2:     clamp(2rem, 4vw, 3.25rem);
   --text-h3:     1.35rem;
   --text-quote:  clamp(1.6rem, 3vw, 2.5rem);
-  --text-body:   15px;
-  --text-small:  13px;
-  --text-label:  10px;
-  --text-micro:  9.5px;
+  --text-body:   16px;
+  --text-small:  14px;
+  --text-label:  11px;
+  --text-micro:  10.5px;
 
   /* Spacing */
   --space-xs:   0.5rem;
