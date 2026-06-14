@@ -147,6 +147,16 @@ nav {
   justify-content: center;
   padding:         var(--space-lg);
   position:        relative;
+  overflow:        hidden;
+}
+
+.hero-parallax-layer {
+  position:   absolute;
+  inset:      -50px;
+  display:    flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
 }
 
 .hero-pill {
@@ -264,7 +274,7 @@ nav {
   font-weight:    300;
   line-height:    1.0;
   letter-spacing: -0.01em;
-  color:          var(--color-text);
+  color:          var(--color-primary);
   position:       absolute;
   top:            0;
   left:           0;
@@ -278,6 +288,52 @@ nav {
 
 .hero-h1 em     { font-style: italic; font-weight: 300; color: var(--color-text); }
 .hero-h1 strong { font-weight: 500; font-style: normal; }
+
+.hero-actions {
+  display:     flex;
+  align-items: center;
+  gap:         1.5rem;
+  margin-top:  2.25rem;
+  flex-wrap:   wrap;
+}
+
+.hero-cta-primary {
+  display:         inline-flex;
+  align-items:     center;
+  gap:             0.6rem;
+  font-family:     var(--font-sans);
+  font-size:       11px;
+  font-weight:     500;
+  letter-spacing:  0.12em;
+  text-transform:  uppercase;
+  color:           var(--color-bg);
+  background:      var(--color-primary);
+  border:          0.5px solid var(--color-primary);
+  padding:         0.85rem 1.5rem;
+  border-radius:   var(--radius-md);
+  text-decoration: none;
+  white-space:     nowrap;
+  transition:      background var(--duration-fast), transform var(--duration-fast);
+}
+
+.hero-cta-primary:hover {
+  background:  var(--color-secondary);
+  transform:   translateY(-1px);
+}
+
+.hero-cta-ghost {
+  font-family:     var(--font-sans);
+  font-size:       11px;
+  font-weight:     400;
+  letter-spacing:  0.14em;
+  text-transform:  uppercase;
+  color:           var(--color-muted);
+  text-decoration: none;
+  transition:      color var(--duration-fast);
+}
+
+.hero-cta-ghost:hover { color: var(--color-text); }
+
 
 /* SUBHEADER — stały, nie animowany */
 .hero-content-bottom {
@@ -806,7 +862,7 @@ nav {
   font-family: var(--font-serif);
   font-size:   1.45rem;
   font-weight: 300;
-  color:       var(--color-text);
+  color:       var(--color-primary);
   line-height: 1.2;
 }
 
@@ -855,7 +911,7 @@ nav {
   font-size:     var(--text-quote);
   font-weight:   300;
   line-height:   1.25;
-  color:         var(--color-text);
+  color:         var(--color-primary);
   margin-bottom: var(--space-md);
 }
 
@@ -1490,5 +1546,299 @@ html.light .icon-moon { display: block; }
   .footer-links {
     flex-direction: column;
     gap: var(--space-sm);
+  }
+}
+
+/* --- EDITORIAL HERO COMPONENT --- */
+.hero-section-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--color-bg);
+  overflow: hidden;
+}
+
+/* Wymuszenie dopasowania nawigacji do układu edytorskiego */
+.hero-section-wrapper .nav-main-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 2rem 4%;
+  background: transparent;
+}
+
+/* --- GRID ASYMETRYCZNY --- */
+.hero-split-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 120px; /* Przestrzeń pod osadzoną nawigację */
+}
+
+/* --- LEWA KOLUMNA STRUKTURALNA --- */
+.hero-typography-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 8% 4rem 6%;
+  position: relative;
+}
+
+.hero-eyebrow-tag {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #8a8f98;
+  margin-bottom: 2rem;
+}
+
+.hero-display-title {
+  font-family: 'Jost', sans-serif;
+  font-size: clamp(2.8rem, 5.2vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 4rem;
+  z-index: 5;
+}
+
+.hero-display-title em {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 400;
+  text-transform: lowercase;
+}
+
+/* PŁYWAJĄCY OKRĄGŁY BADGE (ŁĄCZNIK WIZUALNY COLUMNS) */
+.hero-floating-badge {
+  position: absolute;
+  right: -55px;
+  top: 35%;
+  width: 110px;
+  height: 110px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  background: rgba(13, 15, 18, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  z-index: 10;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-floating-badge:hover {
+  transform: scale(1.08) rotate(15deg);
+  border-color: #ffffff;
+  background: #ffffff;
+}
+
+.badge-inside-arrow {
+  font-size: 1.6rem;
+  color: #ffffff;
+  margin-bottom: 2px;
+  transition: color 0.3s;
+}
+
+.badge-inside-text {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 1.5px;
+  font-weight: 500;
+  color: #8a8f98;
+}
+
+.hero-floating-badge:hover .badge-inside-arrow,
+.hero-floating-badge:hover .badge-inside-text {
+  color: #0d0f12;
+}
+
+/* DOLNA CZĘŚĆ TEKSTOWA (EDITORIAL REVEAL) */
+.hero-context-footer {
+  display: flex;
+  gap: 3rem;
+  align-items: flex-start;
+  max-width: 700px;
+}
+
+.hero-editorial-thumbnail {
+  position: relative;
+  width: 110px;
+  height: 140px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #1a1d24;
+}
+
+.hero-thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) brightness(0.6);
+  transition: filter 0.5s;
+}
+
+.hero-editorial-thumbnail:hover .hero-thumb-img {
+  filter: grayscale(100%) brightness(0.9);
+}
+
+/* Zapewnienie działania Twojego kontenera Lottie wewnątrz miniatury */
+.hero-editorial-thumbnail #lottie-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-text-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero-paragraph-lead {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.6;
+  color: #8a8f98;
+}
+
+.hero-interactive-links a {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #ffffff;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+.hero-interactive-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0.3);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.hero-interactive-links a:hover::after {
+  transform: scaleX(1);
+}
+
+/* --- PRAWA KOLUMNA: CZASOPISMO / RAW ART IMAGE --- */
+.hero-image-showcase {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.hero-raw-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Brutalistyczny efekt głębokiego kontrastu i czarno-białej prasy */
+  filter: grayscale(100%) contrast(135%) brightness(85%);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.1) 8%,
+    rgba(0, 0, 0, 0.4) 20%,
+    rgba(0, 0, 0, 0.8) 40%,
+    rgba(0, 0, 0, 1) 70%
+  );
+  mask-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.1) 8%,
+    rgba(0, 0, 0, 0.4) 20%,
+    rgba(0, 0, 0, 0.8) 40%,
+    rgba(0, 0, 0, 1) 70%
+  );
+}
+
+/* Wtopienie zdjęcia w ciemną lewą kolumnę strony */
+.hero-image-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #0d0f12 0%, rgba(13, 15, 18, 0) 35%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* PIONOWY TEKST NA KRAWĘDZI STRONY */
+.hero-sidebar-vertical-label {
+  position: absolute;
+  right: 2rem;
+  bottom: 4rem;
+  transform: rotate(-90deg);
+  transform-origin: right bottom;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.15);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* --- RESPONSYWNOŚĆ ADAPTACYJNA (MOBILE) --- */
+@media (max-width: 1024px) {
+  .hero-split-grid {
+    grid-template-columns: 1fr;
+    padding-top: 90px;
+  }
+  
+  .hero-image-showcase {
+    height: 45vh;
+    grid-row: 1; /* Zdjęcie przechodzi na samą górę na mobile */
+  }
+  
+  .hero-image-vignette {
+    background: linear-gradient(0deg, #0d0f12 0%, rgba(13, 15, 18, 0) 100%);
+  }
+  
+  .hero-typography-area {
+    padding: 3rem 5%;
+  }
+  
+  .hero-display-title {
+    margin-bottom: 2.5rem;
+  }
+  
+  .hero-floating-badge {
+    right: 5%;
+    top: -55px; /* Badge nakłada się na granicę między zdjęciem a tekstem */
+  }
+  
+  .hero-context-footer {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .hero-sidebar-vertical-label {
+    display: none;
   }
 }

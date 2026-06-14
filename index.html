@@ -12,77 +12,92 @@
   <link rel="stylesheet" href="css/01-tokens.css">     <link rel="stylesheet" href="css/02-base.css">       <link rel="stylesheet" href="css/03-animations.css"> <link rel="stylesheet" href="css/04-components.css"> </head>
 <body>
 
-<nav class="nav-main-container">
-  <a class="nav-logo" href="#">Episode Studio</a>
+<!-- CZYSTY, ASYMETRYCZNY HERO COMPONENT -->
+<header class="hero-section-wrapper">
+  
+  <!-- Zintegrowana, minimalistyczna nawigacja -->
+  <nav class="nav-main-container">
+    <a class="nav-logo" href="#">Episode Studio</a>
 
-  <div class="nav-menu-capsule">
+    <div class="nav-menu-capsule">
+      <ul class="nav-links">
+        <li><a href="#services">Oferta</a></li>
+        <li><a href="#process">Proces</a></li>
+        <li><a href="#about">O nas</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Przełącz motyw" title="Przełącz jasny / ciemny motyw">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        
+        <a class="nav-cta" href="#" onclick="openModal(); return false;">
+          <span class="nav-cta-arrow">→</span>
+          <span>Umów rozmowę</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Główny układ dwukolumnowy (Editorial Grid) -->
+  <div class="hero-split-grid">
     
-    <ul class="nav-links">
-      <li><a href="#services">Oferta</a></li>
-      <li><a href="#process">Proces</a></li>
-      <li><a href="#about">O nas</a></li>
-    </ul>
-
-    <div class="nav-actions">
-      <button class="theme-toggle" id="theme-toggle" aria-label="Przełącz motyw" title="Przełącz jasny / ciemny motyw">
-        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/>
-          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/>
-          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-        </svg>
-        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-        </svg>
-      </button>
+    <!-- LEWA STRONA: Typografia i kontekst -->
+    <div class="hero-typography-area">
+      <p class="hero-eyebrow-tag">Boutique Event Agency · Wroclaw</p>
       
-      <a class="nav-cta" href="#" onclick="openModal(); return false;">
-        <span class="nav-cta-arrow">→</span>
-        <span>Umów rozmowę</span>
+      <h1 class="hero-display-title">
+        Defining<br>
+        impressions on<br>
+        a <em>new level.</em>
+      </h1>
+
+      <!-- Interaktywny, okrągły badge łączący się z modalem Calendly -->
+      <a href="#" onclick="openModal(); return false;" class="hero-floating-badge" aria-label="Umów spotkanie">
+        <span class="badge-inside-arrow">↗</span>
+        <span class="badge-inside-text">NEXT. EP</span>
       </a>
-    </div>
 
-  </div>
-</nav>
-
-<section class="hero">
-
-  <div class="hero-visual" id="hero-visual">
-    <div class="hero-pill" id="hero-pill">
-      <div class="hero-pill-bg" id="hero-pill-bg"></div>
-      <div class="hero-pill-monogram">
-        <div id="lottie-container" class="hero-lottie-spacer"></div>
-      </div>
-      <div class="hero-pill-btn">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
-        </svg>
-      </div>
-    </div>
-  </div>
-
-  <div class="hero-content">
-
-    <div class="hero-content-top">
-      <p class="hero-eyebrow" id="hero-eyebrow">Boutique Event Agency · Wroclaw</p>
-
-      <div class="hero-heading-slot" id="hero-heading-slot">
-        <div class="hero-heading-track" id="hero-heading-track">
-          <h1 class="hero-h1" id="hero-h0">Każde zdarzenie <br>ma swój moment.</h1>
-          <h1 class="hero-h1" id="hero-h1">Każda wizja zasługuje<br> na własną <em>historię.</em></h1>
+      <!-- Dolna strefa informacyjna -->
+      <div class="hero-context-footer">
+        <div class="hero-editorial-thumbnail">
+          <!-- Zachowane miejsce na Twojego Lottiego lub klimatyczny render -->
+          <div id="lottie-container" class="hero-lottie-spacer"></div>
+          <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=400&auto=format&fit=crop" alt="Episode Studio Details" class="hero-thumb-img">
+        </div>
+        
+        <div class="hero-text-block">
+          <p class="hero-paragraph-lead">
+            Dla firm, które chcą więcej niż imprezy. Dla par, które chcą więcej niż organizatora. Projektujemy autorskie doświadczenia, w których najwyższa próba estetyki spotyka się z niewidoczną logistyką.
+          </p>
+          <div class="hero-interactive-links">
+            <a class="hero-action-link-main" href="#contact" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'}); return false;">
+              Opowiedz nam o swoim evencie →
+            </a>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="hero-content-bottom">
-      <p class="hero-sub">Boutique Event Agency: team-building, off-site, ceremonie, aktywacje marek.</p>
-      <p class="hero-sub hero-sub--bold">Dla firm, które chcą więcej niż imprezy. Dla par, które chcą więcej niż organizatora.</p>
+    <!-- PRAWA STRONA: Dominujące, kontrastowe zdjęcie prasowe -->
+    <div class="hero-image-showcase">
+      <div class="hero-image-vignette"></div>
+      <img src="https://images.unsplash.com/photo-1640687997745-11fd29b470a5?q=80&w=736&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Premium Event Atmosphere" class="hero-raw-image">
     </div>
 
   </div>
 
-  <span class="hero-vertical-label">Episode Studio · 2026</span>
-</section>
+  <!-- Boczny, pionowy paszport edytorski -->
+  <span class="hero-sidebar-vertical-label">Episode Studio · Editorial Concept</span>
+</header>
 
 <section class="intro" id="intro">
   <div class="container">
@@ -90,8 +105,8 @@
 
       <div class="reveal">
         <p class="section-label">Dlaczego Episode</p>
-        <h2 class="section-h2">Wydarzenia z własną tożsamością.<br><em>Projektowane bez kompromisów.</em></h2>
-        <p class="section-lead">Nie powielamy schematów. Projektujemy doświadczenia szyte na miarę, w których najwyższa próba estetyki spotyka się z dyskretną, drobiazgową logistyką. Twoje wydarzenie zasługuje na standard premium. Sprawdź, co możemy dla Ciebie stworzyć.</p>
+        <h2 class="section-h2">Nie ma tu gotowych pakietów.<br><em>Jest jeden projekt- Twój własny.</em></h2>
+        <p class="section-lead">Każde zlecenie traktujemy jak unikalną historię — z własnym rytmem, emocją i puentą. Nie ma szablonów. Są tylko ludzie i ich momenty.</p>
       </div>
 
       <div class="intro-stat-grid reveal">
@@ -303,7 +318,7 @@
         <div class="pt-meta">
           <div class="pt-meta-item">
             <span class="pt-meta-key">Czas trwania</span>
-            <span class="pt-meta-val">30 minut · online lub na żywo</span>
+            <span class="pt-meta-val">30 - 60 minut · online lub na kawie</span>
           </div>
           <div class="pt-meta-item">
             <span class="pt-meta-key">Co dostajesz</span>

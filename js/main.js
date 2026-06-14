@@ -180,103 +180,98 @@ function initThemeToggle() {
    ────────────────────────────────────────── */
 
 function initHeroRotation() {
-  const hero    = document.querySelector('.hero');
-  const track   = document.getElementById('hero-heading-track');
-  const eyebrow = document.getElementById('hero-eyebrow');
-  const h0      = document.getElementById('hero-h0');
-  const h1      = document.getElementById('hero-h1');
-  if (!hero || !track || !h0 || !h1) return;
+  const hero     = document.querySelector('.hero');
+  const slot     = document.getElementById('hero-heading-slot');
+  const eyebrow  = document.getElementById('hero-eyebrow');
+  const h0       = document.getElementById('hero-h0');
+  const h1       = document.getElementById('hero-h1');
+  const parallax = document.getElementById('hero-parallax');
+  if (!hero || !h0 || !h1) return;
 
-  // AKTUALIZACJA: Zmiana z Warszawy na Wrocław w tablicy konfiguracyjnej skryptu
+  const INTERVAL = 4000;
+  const EASE     = 'cubic-bezier(0.76, 0, 0.24, 1)';
+  const DUR      = '0.75s';
+
   const slides = [
-    { eyebrow: 'Boutique Event Agency · Wrocław' },
-    { eyebrow: 'Dla marek, zespołów i wymagających osobowości' },
+    { eyebrow: 'Boutique Event Agency · Warszawa', el: h0 },
+    { eyebrow: 'Firmy i zespoły premium',           el: h1 },
   ];
 
-  // WYMUSZENIE UKŁADU ASYMETRYCZNEGO W JAVASCRIPT
-  track.style.setProperty('position', 'relative', 'important');
-  track.style.setProperty('display', 'block', 'important');
+  let current   = 0;
+  let animating = false;
 
-  // Całkowite odpięcie domyślnych animacji wchodzących CSS (fadeUp), aby nie blokowały scrolla
-  h0.style.setProperty('animation', 'none', 'important');
-  h1.style.setProperty('animation', 'none', 'important');
+  /* ── Setup pozycji ── */
+  h0.style.cssText = 'position:relative;transform:translateY(0);opacity:1;';
+  h1.style.cssText = 'position:absolute;top:0;left:0;width:100%;transform:translateY(110%);opacity:0;';
+  if (slot) slot.style.height = h0.scrollHeight + 'px';
 
-  // NAGŁÓWEK 1 (#hero-h0): Po lewej stronie
-  h0.style.setProperty('position', 'relative', 'important');
-  h0.style.setProperty('top', '0', 'important');
-  h0.style.setProperty('left', '0', 'important');
-  h0.style.setProperty('text-align', 'left', 'important');
-  h0.style.setProperty('margin', '0', 'important');
-  h0.style.setProperty('width', '100%', 'important');
-
-  // NAGŁÓWEK 2 (#hero-h1): W prawym dolnym rogu kontenera track
-  h1.style.setProperty('position', 'absolute', 'important');
-  h1.style.setProperty('bottom', '0', 'important');
-  h1.style.setProperty('right', '0', 'important');
-  h1.style.setProperty('text-align', 'right', 'important');
-  h1.style.setProperty('margin', '0', 'important');
-  h1.style.setProperty('width', 'auto', 'important');
-  
-  // Ukrycie wizualne i fizyczne drugiego nagłówka na samym starcie strony
-  h1.style.setProperty('opacity', '0', 'important');
-  h1.style.setProperty('visibility', 'hidden', 'important');
-
-  // Funkcja obliczająca przestrzeń dla asymetrycznego układu
-  function adjustTrackHeight() {
-    const baseHeight = h0.scrollHeight;
-    const secondHeight = h1.scrollHeight;
-    track.style.height = (baseHeight + secondHeight * 0.4) + 'px';
+  /* ── Parallax ── */
+  if (parallax) {
+    let ticking = false;
+    hero.addEventListener('mousemove', e => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const r  = hero.getBoundingClientRect();
+        const cx = (e.clientX - r.left)  / r.width  - 0.5;
+        const cy = (e.clientY - r.top)   / r.height - 0.5;
+        parallax.style.transform = `translate(${cx * 24}px, ${cy * 16}px)`;
+        ticking = false;
+      });
+    });
+    hero.addEventListener('mouseleave', () => {
+      parallax.style.transition = 'transform 0.7s ease';
+      parallax.style.transform  = 'translate(0,0)';
+      setTimeout(() => { parallax.style.transition = ''; }, 700);
+    });
   }
 
-  window.addEventListener('resize', adjustTrackHeight);
-  adjustTrackHeight();
+  /* ── Rotacja nagłówka ── */
+  function goTo(next) {
+    if (animating || next === current) return;
+    animating = true;
 
-  // Obsługa scrolla — precyzyjne sterowanie widocznością i przemieszczaniem
-  function handleHeroScroll() {
-    const scrollY = window.scrollY;
-    
-    const transitionDistance = 280; 
-    let progress = Math.min(Math.max(scrollY / transitionDistance, 0), 1);
-    const moveDistance = 25; 
+    const curH = slides[current].el;
+    const nxtH = slides[next].el;
 
-    // REAKCJA PIERWSZEGO NAGŁÓWKA (#hero-h0) — Zanika
-    h0.style.setProperty('opacity', (1 - progress).toFixed(3), 'important');
-    h0.style.transform = `translate(${-progress * (moveDistance / 2)}px, ${-progress * moveDistance}px)`;
-    
-    if (progress >= 0.98) {
-      h0.style.setProperty('visibility', 'hidden', 'important');
-    } else {
-      h0.style.setProperty('visibility', 'visible', 'important');
-    }
+    nxtH.style.transition = 'none';
+    nxtH.style.position   = 'absolute';
+    nxtH.style.top = '0'; nxtH.style.left = '0'; nxtH.style.width = '100%';
+    nxtH.style.transform  = 'translateY(110%)';
+    nxtH.style.opacity    = '0';
 
-    // REAKCJA DRUGIEGO NAGŁÓWKA (#hero-h1) — Pojawia się w prawym dolnym rogu
-    if (progress > 0.02) {
-      h1.style.setProperty('visibility', 'visible', 'important');
-      h1.style.setProperty('opacity', progress.toFixed(3), 'important');
-    } else {
-      h1.style.setProperty('opacity', '0', 'important');
-      h1.style.setProperty('visibility', 'hidden', 'important');
-    }
-    h1.style.transform = `translateY(${(1 - progress) * moveDistance}px)`;
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        const tr = `transform ${DUR} ${EASE}, opacity 0.6s ease`;
+        curH.style.transition = tr;
+        curH.style.transform  = 'translateY(-110%)';
+        curH.style.opacity    = '0';
+        nxtH.style.transition = tr;
+        nxtH.style.transform  = 'translateY(0)';
+        nxtH.style.opacity    = '1';
 
-    // Płynna, synchroniczna wymiana tekstu nadtytułu (eyebrow) z uwzględnieniem Wrocławia
-    if (eyebrow) {
-      if (progress < 0.5) {
-        eyebrow.textContent = slides[0].eyebrow;
-        eyebrow.style.opacity = ((0.5 - progress) * 2).toFixed(2);
-      } else {
-        eyebrow.textContent = slides[1].eyebrow;
-        eyebrow.style.opacity = ((progress - 0.5) * 2).toFixed(2);
-      }
-    }
+        if (slot) {
+          slot.style.transition = `height ${DUR} ${EASE}`;
+          slot.style.height     = nxtH.scrollHeight + 'px';
+        }
 
-    hero.classList.toggle('is-active', progress > 0.5);
+        if (eyebrow) {
+          eyebrow.style.transition = 'opacity 0.35s ease';
+          eyebrow.style.opacity    = '0';
+          setTimeout(() => {
+            eyebrow.textContent   = slides[next].eyebrow;
+            eyebrow.style.opacity = '1';
+          }, 280);
+        }
+
+        hero.classList.toggle('is-active', next === 1);
+        setTimeout(() => { animating = false; }, 800);
+        current = next;
+      });
+    });
   }
 
-  window.addEventListener('scroll', handleHeroScroll, { passive: true });
-  handleHeroScroll();
-  
-  window.addEventListener('load', adjustTrackHeight);
+  setInterval(() => goTo(current === 0 ? 1 : 0), INTERVAL);
 }
 
 
