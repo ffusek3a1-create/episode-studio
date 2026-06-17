@@ -1750,42 +1750,98 @@ html.light .icon-moon { display: block; }
   position: relative;
   width: 100%;
   height: 100%;
+  /* Dynamiczne tło komponentu z Twojego systemu zmiennych */
+  background-color: var(--color-bg);
+  overflow: hidden;
+  transition: background-color 0.3s ease;
 }
 
 .hero-raw-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Brutalistyczny efekt głębokiego kontrastu i czarno-białej prasy */
+  display: block;
   filter: grayscale(100%) contrast(135%) brightness(85%);
+  
+  /* Uniwersalna maska na bazie alfy (przezroczystości) - działa idealnie w obu motywach */
   -webkit-mask-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.1) 8%,
-    rgba(0, 0, 0, 0.4) 20%,
-    rgba(0, 0, 0, 0.8) 40%,
-    rgba(0, 0, 0, 1) 70%
+    rgba(0, 0, 0, 0.02) 4%,
+    rgba(0, 0, 0, 0.2) 15%,
+    rgba(0, 0, 0, 0.8) 45%,
+    rgba(0, 0, 0, 1) 75%
   );
   mask-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.1) 8%,
-    rgba(0, 0, 0, 0.4) 20%,
-    rgba(0, 0, 0, 0.8) 40%,
-    rgba(0, 0, 0, 1) 70%
+    rgba(0, 0, 0, 0.02) 4%,
+    rgba(0, 0, 0, 0.2) 15%,
+    rgba(0, 0, 0, 0.8) 45%,
+    rgba(0, 0, 0, 1) 75%
   );
 }
 
-/* Wtopienie zdjęcia w ciemną lewą kolumnę strony */
-.hero-image-vignette {
+/* WINIETA DOPASOWANA DO TRYBU CIEMNEGO */
+.dark-theme .hero-image-vignette {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, #0d0f12 0%, rgba(13, 15, 18, 0) 35%);
   z-index: 2;
   pointer-events: none;
+  
+  /* Płynne wtapianie w ciemną zieleń rgb(16, 21, 16) */
+  background: linear-gradient(
+    to right,
+    var(--color-bg) 0%,
+    rgba(16, 21, 16, 0.95) 6%,
+    rgba(16, 21, 16, 0.4) 35%,
+    rgba(16, 21, 16, 0) 70%
+  );
+  mix-blend-mode: multiply; /* Mnożenie świetnie gasi jasne punkty zdjęcia w ciemności */
+}
+
+/* --- ADAPTACJA DLA WERSJI JASNEJ (Eliminuje brudny pas z image_916aa3.jpg) --- */
+.light-theme .hero-image-vignette {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  
+  /* W trybie jasnym zmieniamy tryb mieszania na normalny, by czysto pokryć krawędź mlecznym kolorem */
+  mix-blend-mode: normal; 
+  
+  /* Gradient przechodzący z Twojego jasnego tła w całkowitą przezroczystość */
+  background: linear-gradient(
+    to right,
+    var(--color-bg) 0%,
+    var(--color-bg) 6%,
+    rgba(255, 255, 255, 0) 50%
+  );
+}
+
+
+/* --- DOPASOWANIE RESPONSYWNE (MOBILE) --- */
+@media (max-width: 1024px) {
+  .hero-raw-image {
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 50%);
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 50%);
+  }
+
+  /* Obrócenie kierunku gradientu na mobile dla obu motywów */
+  .dark-theme .hero-image-vignette {
+    background: linear-gradient(to bottom, var(--color-bg) 0%, rgba(16, 21, 16, 0) 100%);
+    mix-blend-mode: normal;
+  }
+  
+  .light-theme .hero-image-vignette {
+    background: linear-gradient(to bottom, var(--color-bg) 0%, rgba(255, 255, 255, 0) 100%);
+  }
 }
 
 /* PIONOWY TEKST NA KRAWĘDZI STRONY */
@@ -1840,5 +1896,100 @@ html.light .icon-moon { display: block; }
   
   .hero-sidebar-vertical-label {
     display: none;
+  }
+}
+
+/* --- STYLIZACJA GŁÓWNEGO PRZYCISKU AKCJI --- */
+.hero-interactive-links .hero-action-link-main {
+  color: var(--color-primary);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 400;
+  text-decoration: none;
+  position: relative;
+  transition: all 0.3s ease;
+  display: inline-block;
+  padding-bottom: 4px;
+}
+
+/* Subtelne podkreślenie w kolorze primary, które ładnie reaguje na hover */
+.hero-interactive-links .hero-action-link-main::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-primary);
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+  opacity: 0.5;
+}
+
+/* Efekt najazdu myszką (hover) dla edytorskiego sznytu */
+.hero-interactive-links .hero-action-link-main:hover {
+  opacity: 0.8;
+  letter-spacing: 3px; /* Delikatne, luksusowe rozszerzenie tekstu przy najechaniu */
+}
+
+.hero-interactive-links .hero-action-link-main:hover::after {
+  transform: scaleX(1.05);
+  opacity: 1;
+}
+
+/* --- WYMUSZENIE SPÓJNEGO TŁA DLA SEKCJI PROCESS --- */
+#process,
+.process-section,
+.process-wrapper {
+  background-color: var(--color-bg) !important;
+  transition: background-color 0.3s ease;
+}
+
+/* Jeśli wewnątrz sekcji masz kontenery lub karty, które też mają inne tło: */
+.process-container,
+.process-inner-layout {
+  background: transparent !important;
+}
+
+/* --- ADAPTACYJNA TYPOGRAFIA DLA KROKÓW PROCESU --- */
+.dark-theme #process .process-step-title,
+.dark-theme #process .process-step-desc {
+  color: #ffffff;
+}
+
+.light-theme #process .process-step-title {
+  color: #101510; /* Głęboka zieleń w trybie jasnym */
+}
+
+.light-theme #process .process-step-desc {
+  color: #4a504a; /* Czytelny szary w trybie jasnym */
+}
+
+/* --- PROSTOWANIE NAGŁÓWKA W SEKCJI OFERTY --- */
+.services-header h2 em,
+.services-header h3 em,
+.services-header .services-title em {
+  font-style: normal !important; /* Kasuje domyślną kursywę znacznika em */
+  font-family: 'Cormorant Garamond', serif; /* Zachowuje elegancki, szeryfowy font */
+}
+
+/* --- IDEALNE WYŚRODKOWANIE PIONOWE W NAGŁÓWKU OFERTA --- */
+.services-header,
+.services-header-reveal,
+.services-header.reveal.visible {
+  display: flex !important;
+  align-items: center !important;    /* To klucz: wyrównuje obie kolumny idealnie do wspólnego środka */
+  justify-content: space-between;    /* Rozpycha nagłówek na lewo i prawo */
+  gap: 4rem;                         /* Zabezpiecza przestrzeń między tekstami */
+}
+
+/* Zabezpieczenie dla układu grid, gdyby flex był nadpisany wyżej */
+@supports (display: grid) {
+  .services-header.reveal.visible {
+    display: grid !important;
+    align-items: center !important;  /* Wyrównanie pionowe wewnątrz struktury grid */
   }
 }
